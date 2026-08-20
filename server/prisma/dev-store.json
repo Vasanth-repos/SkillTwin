@@ -173,11 +173,11 @@
       "id": "7b75c31d-07e1-494a-9370-66c400346dcb",
       "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
       "skillName": "Docker & Containerization",
-      "currentScore": 77,
+      "currentScore": 97,
       "lastEvidence": "Completed Mission: \"Containerize a Microservice with Multi-Stage Dockerfile\" (+20 pts from verified repository)",
       "createdAt": "2026-08-20T08:45:24.692Z",
-      "updatedAt": "2026-08-20T08:51:27.087Z",
-      "lastUpdated": "2026-08-20T08:51:27.087Z"
+      "updatedAt": "2026-08-20T09:26:58.601Z",
+      "lastUpdated": "2026-08-20T09:26:58.601Z"
     },
     {
       "id": "c99df430-8628-4f78-be55-dae64e029d54",
@@ -525,6 +525,19 @@
       "evaluatedAt": "2026-08-20T08:51:27.086Z",
       "createdAt": "2026-08-20T08:51:27.086Z",
       "updatedAt": "2026-08-20T08:51:27.086Z"
+    },
+    {
+      "id": "62186980-cc31-404a-a098-5a3c8388145f",
+      "missionId": "5be86732-0fa2-4e2c-97e1-b09a843b02e2",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "submissionUrl": "https://github.com/alexchen/verified-docker-solution",
+      "status": "EVALUATED",
+      "rubricResults": "[{\"id\":\"dock_1\",\"text\":\"Dockerfile is present in root with multi-stage build pattern\",\"points\":30,\"pointsEarned\":30,\"passed\":true,\"details\":\"Found Dockerfile with container build definitions.\"},{\"id\":\"dock_2\",\"text\":\"docker-compose.yml orchestrates web application and database services\",\"points\":30,\"pointsEarned\":30,\"passed\":true,\"details\":\"Found docker-compose multi-service orchestration file.\"},{\"id\":\"dock_3\",\"text\":\"README.md documents container startup and teardown commands\",\"points\":20,\"pointsEarned\":20,\"passed\":true,\"details\":\"Found README.md with project setup and operational instructions.\"},{\"id\":\"dock_4\",\"text\":\"Healthcheck endpoint or automated test verified\",\"points\":20,\"pointsEarned\":20,\"passed\":true,\"details\":\"Found test suite and automated assertion files.\"}]",
+      "scoreDelta": 20,
+      "submittedAt": "2026-08-20T09:26:58.599Z",
+      "evaluatedAt": "2026-08-20T09:26:58.599Z",
+      "createdAt": "2026-08-20T09:26:58.599Z",
+      "updatedAt": "2026-08-20T09:26:58.599Z"
     }
   ],
   "readinessScoreHistories": [
@@ -604,6 +617,13 @@
       "score": 86,
       "createdAt": "2026-08-20T08:51:27.087Z",
       "updatedAt": "2026-08-20T08:51:27.087Z"
+    },
+    {
+      "id": "525196df-16b0-4f88-8e47-9438a9020348",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 86,
+      "createdAt": "2026-08-20T09:26:58.602Z",
+      "updatedAt": "2026-08-20T09:26:58.602Z"
     }
   ]
 }

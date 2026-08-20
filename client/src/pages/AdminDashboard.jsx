@@ -13,7 +13,13 @@ import {
   GraduationCap, 
   ShieldCheck, 
   Clock, 
-  ArrowUpRight 
+  ArrowUpRight,
+  Download,
+  BookOpen,
+  Calendar,
+  Sparkles,
+  Copy,
+  Check
 } from 'lucide-react';
 import SkillRadarChart from '../components/SkillRadarChart';
 import ReadinessTrendChart from '../components/ReadinessTrendChart';
@@ -25,6 +31,8 @@ export default function AdminDashboard({ subView = 'stats' }) {
   const [roleFilter, setRoleFilter] = useState('');
   const [minReadiness, setMinReadiness] = useState('');
   const [selectedStudent, setSelectedStudent] = useState(null);
+  const [showCurriculumModal, setShowCurriculumModal] = useState(false);
+  const [copiedPlan, setCopiedPlan] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // Fetch cohort telemetry and students
@@ -58,6 +66,42 @@ export default function AdminDashboard({ subView = 'stats' }) {
     }
   };
 
+  // Export CSV Handler
+  const handleExportCsv = () => {
+    if (!students || students.length === 0) return;
+
+    const headers = ['Student Name', 'Email', 'Degree', 'Target Role', 'Readiness Score (%)', 'DSA Problems Solved', 'Completed Missions', 'Last Active'];
+    const rows = students.map(s => [
+      `"${s.name}"`,
+      `"${s.email}"`,
+      `"${s.degree}"`,
+      `"${s.targetRoleName}"`,
+      s.readinessScore,
+      s.dsaProblemsSolved,
+      s.completedMissionsCount,
+      `"${new Date(s.lastActive).toISOString()}"`
+    ]);
+
+    const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `skilltwin-cohort-telemetry-${new Date().toISOString().slice(0,10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const topInstitutionalGap = stats?.institutionalSkillGaps?.[0];
+
+  const handleCopyCurriculum = () => {
+    const plan = `SkillTwin Curriculum Action Plan — Institutional Intervention\nTarget Deficit: ${topInstitutionalGap?.skillName} (${topInstitutionalGap?.gapPercentage}% cohort deficit)\n\nWeek 1: Foundations & Architecture\n- Session 1: Core concepts and container runtime\n- Lab 1: Multi-stage Docker build assignment\n\nWeek 2: Production Readiness\n- Session 2: Orchestration and environment configuration\n- Lab 2: Automated test integration and deployment verification`;
+    navigator.clipboard.writeText(plan);
+    setCopiedPlan(true);
+    setTimeout(() => setCopiedPlan(false), 3000);
+  };
+
   if (loading && !stats) {
     return (
       <div className="p-12 text-center text-slate-400 space-y-2">
@@ -88,10 +132,22 @@ export default function AdminDashboard({ subView = 'stats' }) {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="px-4 py-2 rounded-2xl bg-brand-500/10 border border-brand-500/20 text-xs font-bold text-brand-300">
-            Cohort Active Term 2026
-          </div>
+        <div className="flex flex-wrap items-center gap-2.5">
+          <button
+            onClick={() => setShowCurriculumModal(true)}
+            className="flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold shadow-lg shadow-brand-600/30 transition-all hover:scale-105"
+          >
+            <Sparkles className="w-4 h-4" />
+            <span>Generate Curriculum Intervention</span>
+          </button>
+
+          <button
+            onClick={handleExportCsv}
+            className="flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white text-xs font-semibold transition-colors"
+          >
+            <Download className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Export CSV</span>
+          </button>
         </div>
       </div>
 
@@ -308,6 +364,87 @@ export default function AdminDashboard({ subView = 'stats' }) {
           </table>
         </div>
       </div>
+
+      {/* Curriculum Intervention Generator Modal */}
+      {showCurriculumModal && topInstitutionalGap && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
+          <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-700 rounded-3xl shadow-2xl overflow-hidden my-8 animate-in zoom-in-95">
+            
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-brand-400" />
+                <h3 className="text-sm font-bold text-white">
+                  Curriculum Intervention Syllabus Plan
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowCurriculumModal(false)}
+                className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-5 max-h-[75vh] overflow-y-auto text-xs">
+              
+              {/* Target Banner */}
+              <div className="p-4 rounded-2xl bg-brand-500/10 border border-brand-500/20 space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-brand-300">
+                    Recommended Workshop: {topInstitutionalGap.skillName}
+                  </span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-500/20 text-rose-300">
+                    {topInstitutionalGap.gapPercentage}% Cohort Deficit
+                  </span>
+                </div>
+                <p className="text-slate-400">
+                  Targeted at closing the {topInstitutionalGap.studentsWithGap} student gap identified by SkillTwin telemetry.
+                </p>
+              </div>
+
+              {/* 2-Week Workshop Plan */}
+              <div className="space-y-3">
+                <h4 className="font-bold text-white uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+                  <Calendar className="w-4 h-4 text-cyan-400" /> 2-Week Intensive Hands-On Lab Schedule
+                </h4>
+
+                <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                  <p className="font-bold text-cyan-300">Week 1: Core Architecture & Artifact Creation</p>
+                  <p className="text-slate-300">• Lecture: Production containerization and multi-stage builds</p>
+                  <p className="text-slate-300">• Lab Mission: Containerize Express + PostgreSQL backend service</p>
+                  <p className="text-slate-400 font-mono text-[10px]">Verification: Dockerfile, docker-compose.yml presence & healthcheck</p>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                  <p className="font-bold text-indigo-300">Week 2: CI/CD Pipeline & Orchestration</p>
+                  <p className="text-slate-300">• Lecture: GitHub Actions automation matrix and test execution</p>
+                  <p className="text-slate-300">• Lab Mission: Multi-environment deployment with automated testing</p>
+                  <p className="text-slate-400 font-mono text-[10px]">Verification: .github/workflows/ci.yml and test assertions</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="px-6 py-4 bg-slate-950 border-t border-slate-800 flex justify-between">
+              <button
+                onClick={handleCopyCurriculum}
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold transition-all"
+              >
+                {copiedPlan ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                <span>{copiedPlan ? 'Copied to Clipboard!' : 'Copy Syllabus Plan'}</span>
+              </button>
+
+              <button
+                onClick={() => setShowCurriculumModal(false)}
+                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-300"
+              >
+                Close
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
 
       {/* Student Drilldown Modal */}
       {selectedStudent && (

@@ -14,16 +14,22 @@ import {
   ArrowRight,
   ShieldCheck,
   FileCode,
-  FileCheck
+  FolderTree,
+  FileText,
+  Boxes,
+  Key
 } from 'lucide-react';
 
 export default function MissionSubmissionModal({ mission, onClose }) {
   const { submitMissionEvidence } = useSkillTwin();
   const [submissionUrl, setSubmissionUrl] = useState('');
+  const [githubPat, setGithubPat] = useState('');
+  const [showPatInput, setShowPatInput] = useState(false);
   const [isEvaluating, setIsEvaluating] = useState(false);
   const [evalStep, setEvalStep] = useState(0);
   const [evalResult, setEvalResult] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const [activeTab, setActiveTab] = useState('rubric'); // 'rubric' | 'files'
 
   if (!mission) return null;
 
@@ -49,7 +55,7 @@ export default function MissionSubmissionModal({ mission, onClose }) {
     setIsEvaluating(true);
     setEvalStep(1);
 
-    // Simulated multi-step rubric scanner for dynamic UX
+    // Multi-step rubric scanner for dynamic UX
     setTimeout(() => setEvalStep(2), 500);
     setTimeout(() => setEvalStep(3), 1100);
 
@@ -65,6 +71,8 @@ export default function MissionSubmissionModal({ mission, onClose }) {
       setErrorMessage(err.message || 'Failed to evaluate submission.');
     }
   };
+
+  const discoveredFiles = evalResult?.evaluation?.discoveredFiles || [];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
@@ -131,10 +139,16 @@ export default function MissionSubmissionModal({ mission, onClose }) {
 
           {/* Rubric Criteria Checklist */}
           <div className="space-y-2.5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-              <Award className="w-4 h-4 text-brand-400" />
-              Automated Rubric Verification Checklist
-            </h4>
+            <div className="flex items-center justify-between">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                <Award className="w-4 h-4 text-brand-400" />
+                Automated Rubric Verification Checklist
+              </h4>
+              <span className="text-[11px] font-semibold text-slate-500 font-mono">
+                {checklist.length} Criteria
+              </span>
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {checklist.map((item, i) => (
                 <div 
@@ -151,81 +165,137 @@ export default function MissionSubmissionModal({ mission, onClose }) {
             </div>
           </div>
 
-          {/* Evaluation Results Banner (if evaluated) */}
+          {/* Evaluation Results Banner & Interactive File Explorer (if evaluated) */}
           {evalResult && (
-            <div className={`p-5 rounded-2xl border ${
-              evalResult.evaluation?.scoreDelta > 0 
-                ? 'bg-gradient-to-br from-emerald-950/40 to-slate-900 border-emerald-500/40'
-                : 'bg-slate-950 border-amber-500/30'
-            }`}>
-              <div className="flex items-center justify-between gap-2 mb-3">
-                <div className="flex items-center gap-2">
-                  {evalResult.evaluation?.allPassed ? (
-                    <CheckCircle2 className="w-6 h-6 text-emerald-400" />
-                  ) : (
-                    <Award className="w-6 h-6 text-amber-400" />
-                  )}
-                  <div>
-                    <h4 className="text-sm font-bold text-white">
-                      {evalResult.evaluation?.allPassed ? '100% Rubric Verification Passed!' : 'Rubric Evaluation Complete'}
-                    </h4>
-                    <p className="text-xs text-slate-400">
-                      Source: {evalResult.evaluation?.inspectionSource}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="text-right">
-                  <span className="text-xl font-black text-emerald-400 block">
-                    +{evalResult.evaluation?.scoreDelta} PTS
-                  </span>
-                  <span className="text-[10px] text-slate-400 uppercase font-semibold">
-                    Skill Delta
-                  </span>
-                </div>
-              </div>
-
-              {/* Checklist verification feedback */}
-              <div className="space-y-1.5 mt-3 pt-3 border-t border-slate-800">
-                {evalResult.evaluation?.rubricResults.map((r, i) => (
-                  <div key={i} className="flex items-start justify-between text-xs py-1">
-                    <div className="flex items-center gap-2">
-                      {r.passed ? (
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
-                      ) : (
-                        <XCircle className="w-3.5 h-3.5 text-rose-400 flex-shrink-0" />
-                      )}
-                      <span className={r.passed ? 'text-slate-200' : 'text-slate-400'}>
-                        {r.text}
-                      </span>
+            <div className="space-y-4">
+              
+              {/* Score Delta Award Card */}
+              <div className={`p-5 rounded-2xl border ${
+                evalResult.evaluation?.scoreDelta > 0 
+                  ? 'bg-gradient-to-br from-emerald-950/40 to-slate-900 border-emerald-500/40'
+                  : 'bg-slate-950 border-amber-500/30'
+              }`}>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <div className="flex items-center gap-2">
+                    {evalResult.evaluation?.allPassed ? (
+                      <CheckCircle2 className="w-6 h-6 text-emerald-400" />
+                    ) : (
+                      <Award className="w-6 h-6 text-amber-400" />
+                    )}
+                    <div>
+                      <h4 className="text-sm font-bold text-white">
+                        {evalResult.evaluation?.allPassed ? '100% Rubric Verification Passed!' : 'Rubric Evaluation Complete'}
+                      </h4>
+                      <p className="text-xs text-slate-400">
+                        Source: {evalResult.evaluation?.inspectionSource}
+                      </p>
                     </div>
-                    <span className={`font-mono text-[11px] font-bold ${r.passed ? 'text-emerald-400' : 'text-rose-400'}`}>
-                      {r.passed ? `+${r.points} pts` : '0 pts'}
+                  </div>
+
+                  <div className="text-right">
+                    <span className="text-xl font-black text-emerald-400 block">
+                      +{evalResult.evaluation?.scoreDelta} PTS
+                    </span>
+                    <span className="text-[10px] text-slate-400 uppercase font-semibold">
+                      Skill Delta Awarded
                     </span>
                   </div>
-                ))}
+                </div>
+
+                {/* Rubric Tab Navigation */}
+                <div className="flex gap-2 border-b border-slate-800 pb-2 mt-4 text-xs font-semibold">
+                  <button
+                    onClick={() => setActiveTab('rubric')}
+                    className={`pb-1 border-b-2 transition-colors ${
+                      activeTab === 'rubric' ? 'border-brand-500 text-white' : 'border-transparent text-slate-400'
+                    }`}
+                  >
+                    Checklist Results
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('files')}
+                    className={`pb-1 border-b-2 transition-colors flex items-center gap-1 ${
+                      activeTab === 'files' ? 'border-brand-500 text-white' : 'border-transparent text-slate-400'
+                    }`}
+                  >
+                    <FolderTree className="w-3.5 h-3.5" />
+                    Discovered Artifacts ({discoveredFiles.length})
+                  </button>
+                </div>
+
+                {/* Tab 1: Checklist verification feedback */}
+                {activeTab === 'rubric' && (
+                  <div className="space-y-1.5 mt-3">
+                    {evalResult.evaluation?.rubricResults.map((r, i) => (
+                      <div key={i} className="flex items-start justify-between text-xs py-1">
+                        <div className="flex items-center gap-2">
+                          {r.passed ? (
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                          ) : (
+                            <XCircle className="w-3.5 h-3.5 text-rose-400 flex-shrink-0" />
+                          )}
+                          <span className={r.passed ? 'text-slate-200' : 'text-slate-400'}>
+                            {r.text}
+                          </span>
+                        </div>
+                        <span className={`font-mono text-[11px] font-bold ${r.passed ? 'text-emerald-400' : 'text-rose-400'}`}>
+                          {r.passed ? `+${r.points} pts` : '0 pts'}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Tab 2: Discovered File Tree */}
+                {activeTab === 'files' && (
+                  <div className="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2">
+                    <p className="text-[11px] text-slate-400">
+                      Discovered files verified against mission rubric pattern matchers:
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 max-h-36 overflow-y-auto">
+                      {discoveredFiles.map((file, i) => (
+                        <div key={i} className="flex items-center gap-1.5 text-xs text-cyan-300 font-mono py-0.5 px-2 rounded bg-slate-900 border border-slate-800/80">
+                          <FileText className="w-3.5 h-3.5 text-brand-400" />
+                          <span className="truncate">{file}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Updated Twin Scores */}
+                <div className="mt-4 pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <span className="text-slate-300">
+                    {mission.targetSkill}: <strong className="text-white">{evalResult.previousScore}%</strong> → <strong className="text-cyan-400">{evalResult.newScore}%</strong>
+                  </span>
+                  <span className="text-slate-300">
+                    New Overall Readiness: <strong className="text-emerald-400">{evalResult.readiness?.readinessScore}%</strong>
+                  </span>
+                </div>
               </div>
 
-              {/* Updated Twin Scores */}
-              <div className="mt-4 pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs">
-                <span className="text-slate-300">
-                  {mission.targetSkill}: <strong className="text-white">{evalResult.previousScore}%</strong> → <strong className="text-cyan-400">{evalResult.newScore}%</strong>
-                </span>
-                <span className="text-slate-300">
-                  New Overall Readiness: <strong className="text-emerald-400">{evalResult.readiness?.readinessScore}%</strong>
-                </span>
-              </div>
             </div>
           )}
 
-          {/* Submission Input Form (if not yet submitted or if retrying) */}
+          {/* Submission Input Form (if not yet submitted) */}
           {!evalResult && (
             <form onSubmit={handleSubmit} className="space-y-4">
               
               <div className="space-y-1.5">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-300">
-                  Submit Evidence Repository URL
-                </label>
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-300">
+                    Submit Evidence Repository URL
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setShowPatInput(!showPatInput)}
+                    className="text-[11px] text-brand-400 hover:text-brand-300 flex items-center gap-1"
+                  >
+                    <Key className="w-3 h-3" />
+                    <span>{showPatInput ? 'Hide GitHub Token' : 'Live GitHub Token (Optional)'}</span>
+                  </button>
+                </div>
+
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
                     <Github className="w-4 h-4" />
@@ -240,6 +310,22 @@ export default function MissionSubmissionModal({ mission, onClose }) {
                   />
                 </div>
               </div>
+
+              {/* Optional GitHub PAT Input */}
+              {showPatInput && (
+                <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                  <label className="text-[11px] text-slate-400 font-semibold block">
+                    Personal Access Token (For authenticating live public/private GitHub repo trees)
+                  </label>
+                  <input
+                    type="password"
+                    value={githubPat}
+                    onChange={(e) => setGithubPat(e.target.value)}
+                    placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+                    className="w-full px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-white font-mono"
+                  />
+                </div>
+              )}
 
               {/* Quick Demo Fill Shortcut Buttons */}
               <div className="flex flex-wrap items-center gap-2 pt-1">
@@ -272,7 +358,7 @@ export default function MissionSubmissionModal({ mission, onClose }) {
                   <Loader2 className="w-6 h-6 text-brand-400 animate-spin mx-auto" />
                   <p className="text-xs font-bold text-white">
                     {evalStep === 1 && 'Connecting to repository & fetching file tree...'}
-                    {evalStep === 2 && 'Executing checklist pattern matchers...'}
+                    {evalStep === 2 && 'Executing checklist pattern matchers & inspecting Docker/SQL/Tests...'}
                     {evalStep === 3 && 'Evaluating rubric criteria and calculating skill delta...'}
                   </p>
                 </div>

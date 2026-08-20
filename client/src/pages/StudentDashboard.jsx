@@ -6,6 +6,9 @@ import SkillBarChart from '../components/SkillBarChart';
 import PriorityGapList from '../components/PriorityGapList';
 import ReadinessTrendChart from '../components/ReadinessTrendChart';
 import MissionSubmissionModal from '../components/MissionSubmissionModal';
+import MilestoneBadges from '../components/MilestoneBadges';
+import RoleBenchmarkMatrix from '../components/RoleBenchmarkMatrix';
+import CredentialExportModal from '../components/CredentialExportModal';
 import { 
   Target, 
   Compass, 
@@ -17,12 +20,17 @@ import {
   CheckCircle2, 
   ArrowRight,
   TrendingUp,
-  FolderGit2
+  FolderGit2,
+  ShieldCheck,
+  Layers,
+  Share2
 } from 'lucide-react';
 
 export default function StudentDashboard({ onNavigateToMissions, onNavigateToProfile }) {
   const { profile, skillGraphs, gaps, readiness, readinessHistory, missions, submissions } = useSkillTwin();
   const [selectedMissionForModal, setSelectedMissionForModal] = useState(null);
+  const [showSimulatorModal, setShowSimulatorModal] = useState(false);
+  const [showCredentialModal, setShowCredentialModal] = useState(false);
   const [chartViewMode, setChartViewMode] = useState('radar'); // 'radar' | 'bars'
 
   const targetRole = profile?.targetRole;
@@ -46,6 +54,32 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
       
+      {/* Top Action Bar: Quick Simulator & Credential Export */}
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-900/60 p-3.5 rounded-2xl border border-slate-800/80">
+        <div className="flex items-center gap-2 text-xs text-slate-300">
+          <Sparkles className="w-4 h-4 text-brand-400" />
+          <span>Active Benchmark: <strong className="text-white">{targetRole?.name}</strong></span>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={() => setShowSimulatorModal(true)}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 hover:text-white transition-colors"
+          >
+            <Layers className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Role "What-If" Simulator</span>
+          </button>
+
+          <button
+            onClick={() => setShowCredentialModal(true)}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-xs font-bold text-white shadow-md shadow-brand-600/30 transition-all hover:scale-105"
+          >
+            <ShieldCheck className="w-3.5 h-3.5 text-white" />
+            <span>Export Verified Credential</span>
+          </button>
+        </div>
+      </div>
+
       {/* Hero Digital Twin Overview Row */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
@@ -116,6 +150,15 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
           </div>
         </div>
 
+      </div>
+
+      {/* Milestone Badges Row */}
+      <div className="glass-panel p-6 rounded-3xl">
+        <MilestoneBadges 
+          profile={profile} 
+          skillGraphs={skillGraphs} 
+          submissions={submissions} 
+        />
       </div>
 
       {/* Recommended Mission Callout Banner */}
@@ -248,6 +291,29 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
         </div>
 
       </div>
+
+      {/* Role Simulator Modal */}
+      {showSimulatorModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
+          <div className="relative w-full max-w-4xl bg-slate-900 border border-slate-700 rounded-3xl shadow-2xl overflow-hidden my-8 p-6 space-y-4">
+            <div className="flex justify-between items-center pb-3 border-b border-slate-800">
+              <h3 className="font-bold text-white text-base">Multi-Role Benchmark Simulator</h3>
+              <button onClick={() => setShowSimulatorModal(false)} className="text-slate-400 hover:text-white">✕</button>
+            </div>
+            <RoleBenchmarkMatrix onClose={() => setShowSimulatorModal(false)} />
+          </div>
+        </div>
+      )}
+
+      {/* Verified Credential Export Modal */}
+      {showCredentialModal && (
+        <CredentialExportModal
+          profile={profile}
+          readiness={readiness}
+          skillGraphs={skillGraphs}
+          onClose={() => setShowCredentialModal(false)}
+        />
+      )}
 
       {/* Mission Submission Modal */}
       {selectedMissionForModal && (

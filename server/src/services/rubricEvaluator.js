@@ -91,6 +91,7 @@ async function evaluateMissionSubmission(mission, submissionUrl, customFilesList
   return {
     submissionUrl,
     inspectionSource,
+    discoveredFiles: repoFiles,
     evaluatedAt: new Date().toISOString(),
     totalEarnedPoints,
     maxPossiblePoints,
