@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import VideoPitchPlayerModal from '../components/VideoPitchPlayerModal';
 import { 
   Sparkles, 
   Target, 
@@ -13,11 +14,13 @@ import {
   CheckCircle2, 
   Layers,
   GraduationCap,
-  Users
+  Users,
+  Play
 } from 'lucide-react';
 
 export default function LandingPage({ onGetStarted }) {
   const { quickLogin } = useAuth();
+  const [showPitchModal, setShowPitchModal] = useState(false);
 
   const personas = [
     {
@@ -80,16 +83,16 @@ export default function LandingPage({ onGetStarted }) {
       </div>
 
       {/* Hero Section */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 sm:pt-20 sm:pb-24 text-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 sm:pt-16 sm:pb-24 text-center">
         
         {/* Hackathon Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 shadow-xl mb-6">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 shadow-xl mb-5">
           <Sparkles className="w-3.5 h-3.5 text-brand-400 animate-pulse" />
           <span className="text-xs font-bold text-slate-300">
             Career-Readiness Digital Twin Platform
           </span>
           <span className="text-[9px] font-mono uppercase bg-brand-500/20 text-brand-300 px-2 py-0.5 rounded-full border border-brand-500/30">
-            MVP
+            PRO
           </span>
         </div>
 
@@ -106,8 +109,19 @@ export default function LandingPage({ onGetStarted }) {
           Benchmark your skills against real industry roles, prioritize critical gaps, and close them with hands-on evaluated missions.
         </p>
 
+        {/* Big 5-Minute Final Video Pitch Button */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <button
+            onClick={() => setShowPitchModal(true)}
+            className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-rose-600 via-pink-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-black text-sm shadow-xl shadow-rose-600/30 transition-all hover:scale-105"
+          >
+            <Play className="w-4 h-4 fill-white" />
+            <span>Watch 5-Minute Final Video Pitch</span>
+          </button>
+        </div>
+
         {/* 1-Click Persona Launchpad for Judges */}
-        <div className="mt-12 max-w-5xl mx-auto">
+        <div className="mt-10 max-w-5xl mx-auto">
           <div className="flex items-center justify-between gap-4 mb-4 text-left">
             <div>
               <h2 className="text-sm font-bold text-white flex items-center gap-2">
@@ -220,6 +234,11 @@ export default function LandingPage({ onGetStarted }) {
       <footer className="border-t border-slate-900 py-4 text-center text-xs text-slate-500">
         SkillTwin • Deterministic Career-Readiness Evidence Engine
       </footer>
+
+      {/* Video Pitch Modal */}
+      {showPitchModal && (
+        <VideoPitchPlayerModal onClose={() => setShowPitchModal(false)} />
+      )}
 
     </div>
   );
