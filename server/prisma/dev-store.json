@@ -155,11 +155,11 @@
       "id": "24d56443-e687-4c19-b365-40e12aadd11b",
       "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
       "skillName": "System Design & Concurrency",
-      "currentScore": 82,
+      "currentScore": 92,
       "lastEvidence": "Skill Defense Drill: \"Distributed Systems & Caching Challenge\" (+10 pts)",
       "createdAt": "2026-08-20T08:45:24.692Z",
-      "updatedAt": "2026-08-20T16:02:34.510Z",
-      "lastUpdated": "2026-08-20T16:02:34.510Z"
+      "updatedAt": "2026-08-20T16:05:26.283Z",
+      "lastUpdated": "2026-08-20T16:05:26.283Z"
     },
     {
       "id": "81ed72dc-fa6c-429c-88c2-d4f1c9efd565",
@@ -177,8 +177,8 @@
       "currentScore": 100,
       "lastEvidence": "Completed Mission: \"Containerize a Microservice with Multi-Stage Dockerfile\" (+20 pts from verified repository)",
       "createdAt": "2026-08-20T08:45:24.692Z",
-      "updatedAt": "2026-08-20T16:02:34.520Z",
-      "lastUpdated": "2026-08-20T16:02:34.520Z"
+      "updatedAt": "2026-08-20T16:05:26.291Z",
+      "lastUpdated": "2026-08-20T16:05:26.291Z"
     },
     {
       "id": "c99df430-8628-4f78-be55-dae64e029d54",
@@ -578,6 +578,19 @@
       "evaluatedAt": "2026-08-20T16:02:34.520Z",
       "createdAt": "2026-08-20T16:02:34.520Z",
       "updatedAt": "2026-08-20T16:02:34.520Z"
+    },
+    {
+      "id": "814a5ad2-05f1-4bfa-bd25-ca7f572122a1",
+      "missionId": "5be86732-0fa2-4e2c-97e1-b09a843b02e2",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "submissionUrl": "Direct In-Browser Code Artifact",
+      "status": "EVALUATED",
+      "rubricResults": "[{\"id\":\"dock_1\",\"text\":\"Dockerfile is present in root with multi-stage build pattern\",\"points\":30,\"pointsEarned\":30,\"passed\":true,\"details\":\"Found Dockerfile with container build definitions.\"},{\"id\":\"dock_2\",\"text\":\"docker-compose.yml orchestrates web application and database services\",\"points\":30,\"pointsEarned\":30,\"passed\":true,\"details\":\"Found docker-compose multi-service orchestration file.\"},{\"id\":\"dock_3\",\"text\":\"README.md documents container startup and teardown commands\",\"points\":20,\"pointsEarned\":20,\"passed\":true,\"details\":\"Found README.md with project setup and operational instructions.\"},{\"id\":\"dock_4\",\"text\":\"Healthcheck endpoint or automated test verified\",\"points\":20,\"pointsEarned\":20,\"passed\":true,\"details\":\"Found test suite and automated assertion files.\"}]",
+      "scoreDelta": 20,
+      "submittedAt": "2026-08-20T16:05:26.290Z",
+      "evaluatedAt": "2026-08-20T16:05:26.290Z",
+      "createdAt": "2026-08-20T16:05:26.290Z",
+      "updatedAt": "2026-08-20T16:05:26.290Z"
     }
   ],
   "readinessScoreHistories": [
@@ -720,6 +733,20 @@
       "score": 93,
       "createdAt": "2026-08-20T16:02:34.521Z",
       "updatedAt": "2026-08-20T16:02:34.521Z"
+    },
+    {
+      "id": "4f286654-e600-4547-a098-5ba35e5e77dd",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 93,
+      "createdAt": "2026-08-20T16:05:26.284Z",
+      "updatedAt": "2026-08-20T16:05:26.284Z"
+    },
+    {
+      "id": "d9171487-242e-4204-9fe3-3e1771c5f448",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 93,
+      "createdAt": "2026-08-20T16:05:26.292Z",
+      "updatedAt": "2026-08-20T16:05:26.292Z"
     }
   ],
   "facultyAssignments": [
@@ -758,6 +785,18 @@
       "assignedAt": "2026-08-20T16:02:34.605Z",
       "createdAt": "2026-08-20T16:02:34.605Z",
       "updatedAt": "2026-08-20T16:02:34.605Z"
+    },
+    {
+      "id": "fd7b7208-0659-45fa-9c2c-c398aa8237cd",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "missionId": "5be86732-0fa2-4e2c-97e1-b09a843b02e2",
+      "facultyName": "Prof. Marcus Davis",
+      "facultyNote": "Please complete before campus placement interviews on Friday.",
+      "deadline": "Friday 5:00 PM",
+      "status": "PENDING",
+      "assignedAt": "2026-08-20T16:05:26.365Z",
+      "createdAt": "2026-08-20T16:05:26.365Z",
+      "updatedAt": "2026-08-20T16:05:26.365Z"
     }
   ]
 }
