@@ -19,7 +19,9 @@ import {
   Calendar,
   Sparkles,
   Copy,
-  Check
+  Check,
+  Send,
+  PlusCircle
 } from 'lucide-react';
 import SkillRadarChart from '../components/SkillRadarChart';
 import ReadinessTrendChart from '../components/ReadinessTrendChart';
@@ -27,6 +29,7 @@ import ReadinessTrendChart from '../components/ReadinessTrendChart';
 export default function AdminDashboard({ subView = 'stats' }) {
   const [stats, setStats] = useState(null);
   const [students, setStudents] = useState([]);
+  const [missions, setMissions] = useState([]);
   const [search, setSearch] = useState('');
   const [roleFilter, setRoleFilter] = useState('');
   const [minReadiness, setMinReadiness] = useState('');
@@ -35,18 +38,28 @@ export default function AdminDashboard({ subView = 'stats' }) {
   const [copiedPlan, setCopiedPlan] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Fetch cohort telemetry and students
+  // Faculty assignment state
+  const [assigningStudent, setAssigningStudent] = useState(null);
+  const [selectedMissionId, setSelectedMissionId] = useState('');
+  const [facultyNote, setFacultyNote] = useState('');
+  const [assignmentSuccess, setAssignmentSuccess] = useState('');
+
+  // Fetch cohort telemetry, students, and missions
   useEffect(() => {
     async function loadAdminData() {
       setLoading(true);
       try {
-        const statsRes = await api.get('/admin/cohort-stats');
+        const [statsRes, studentsRes, missionsRes] = await Promise.all([
+          api.get('/admin/cohort-stats'),
+          api.get('/admin/students', { params: { search, roleId: roleFilter, minReadiness } }),
+          api.get('/missions')
+        ]);
         setStats(statsRes.data);
-
-        const studentsRes = await api.get('/admin/students', {
-          params: { search, roleId: roleFilter, minReadiness }
-        });
         setStudents(studentsRes.data.students || []);
+        setMissions(missionsRes.data.missions || []);
+        if (missionsRes.data.missions?.length > 0) {
+          setSelectedMissionId(missionsRes.data.missions[0].id);
+        }
       } catch (err) {
         console.error('Failed to load admin data:', err);
       } finally {
@@ -63,6 +76,29 @@ export default function AdminDashboard({ subView = 'stats' }) {
       setSelectedStudent(res.data.student);
     } catch (err) {
       alert('Could not fetch student details.');
+    }
+  };
+
+  // Submit faculty assignment
+  const handleAssignMissionSubmit = async (e) => {
+    e.preventDefault();
+    if (!assigningStudent || !selectedMissionId) return;
+
+    try {
+      await api.post('/admin/assign-mission', {
+        studentProfileId: assigningStudent.id,
+        missionId: selectedMissionId,
+        facultyNote: facultyNote || 'Prioritized by academic faculty for upcoming placement drives.',
+        deadline: 'Before Campus Placement Drive'
+      });
+      setAssignmentSuccess(`Mission successfully assigned to ${assigningStudent.name}!`);
+      setTimeout(() => {
+        setAssignmentSuccess('');
+        setAssigningStudent(null);
+        setFacultyNote('');
+      }, 3000);
+    } catch (err) {
+      alert('Failed to assign mission: ' + err.message);
     }
   };
 
@@ -308,7 +344,7 @@ export default function AdminDashboard({ subView = 'stats' }) {
                 <th className="py-3 px-3">Readiness Score</th>
                 <th className="py-3 px-3">DSA Count</th>
                 <th className="py-3 px-3">Missions</th>
-                <th className="py-3 px-3 text-right">Drilldown</th>
+                <th className="py-3 px-3 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60">
@@ -349,13 +385,22 @@ export default function AdminDashboard({ subView = 'stats' }) {
                       {st.completedMissionsCount} Verified
                     </span>
                   </td>
-                  <td className="py-3.5 px-3 text-right">
+                  <td className="py-3.5 px-3 text-right space-x-1.5">
+                    <button
+                      onClick={() => setAssigningStudent(st)}
+                      className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-brand-600/20 hover:bg-brand-600/30 text-brand-300 border border-brand-500/30 font-semibold transition-colors"
+                      title="Assign Priority Mission"
+                    >
+                      <PlusCircle className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Assign Mission</span>
+                    </button>
+
                     <button
                       onClick={() => handleViewStudent(st.id)}
                       className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold transition-colors"
                     >
                       <Eye className="w-3.5 h-3.5" />
-                      <span>Inspect Twin</span>
+                      <span>Inspect</span>
                     </button>
                   </td>
                 </tr>
@@ -364,6 +409,75 @@ export default function AdminDashboard({ subView = 'stats' }) {
           </table>
         </div>
       </div>
+
+      {/* Assign Mission Modal */}
+      {assigningStudent && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
+          <div className="relative w-full max-w-lg bg-slate-900 border border-slate-700 rounded-3xl shadow-2xl overflow-hidden my-8 p-6 space-y-4">
+            
+            <div className="flex justify-between items-center pb-3 border-b border-slate-800">
+              <div>
+                <h3 className="font-bold text-white text-base">Assign Faculty Priority Mission</h3>
+                <p className="text-xs text-slate-400">Target Candidate: <strong className="text-cyan-300">{assigningStudent.name}</strong></p>
+              </div>
+              <button onClick={() => setAssigningStudent(null)} className="text-slate-400 hover:text-white">✕</button>
+            </div>
+
+            {assignmentSuccess ? (
+              <div className="p-4 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-bold flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                {assignmentSuccess}
+              </div>
+            ) : (
+              <form onSubmit={handleAssignMissionSubmit} className="space-y-4 text-xs">
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Select Mission to Assign</label>
+                  <select
+                    value={selectedMissionId}
+                    onChange={(e) => setSelectedMissionId(e.target.value)}
+                    className="w-full p-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-brand-500"
+                  >
+                    {missions.map(m => (
+                      <option key={m.id} value={m.id}>
+                        {m.title} ({m.targetSkill})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-semibold text-slate-300 mb-1">Faculty Coaching Note</label>
+                  <textarea
+                    rows={3}
+                    value={facultyNote}
+                    onChange={(e) => setFacultyNote(e.target.value)}
+                    placeholder="e.g. Alex, please complete this containerization mission before our mock placement technical interview on Friday."
+                    className="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-brand-500"
+                  />
+                </div>
+
+                <div className="flex justify-end gap-2 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setAssigningStudent(null)}
+                    className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex items-center gap-1.5 px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold transition-all"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                    <span>Assign Mission to Student</span>
+                  </button>
+                </div>
+              </form>
+            )}
+
+          </div>
+        </div>
+      )}
 
       {/* Curriculum Intervention Generator Modal */}
       {showCurriculumModal && topInstitutionalGap && (
@@ -387,7 +501,6 @@ export default function AdminDashboard({ subView = 'stats' }) {
 
             <div className="p-6 space-y-5 max-h-[75vh] overflow-y-auto text-xs">
               
-              {/* Target Banner */}
               <div className="p-4 rounded-2xl bg-brand-500/10 border border-brand-500/20 space-y-1">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-brand-300">
@@ -402,7 +515,6 @@ export default function AdminDashboard({ subView = 'stats' }) {
                 </p>
               </div>
 
-              {/* 2-Week Workshop Plan */}
               <div className="space-y-3">
                 <h4 className="font-bold text-white uppercase tracking-wider text-[11px] flex items-center gap-1.5">
                   <Calendar className="w-4 h-4 text-cyan-400" /> 2-Week Intensive Hands-On Lab Schedule
@@ -451,7 +563,6 @@ export default function AdminDashboard({ subView = 'stats' }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
           <div className="relative w-full max-w-4xl bg-slate-900 border border-slate-700 rounded-3xl shadow-2xl overflow-hidden my-8 animate-in zoom-in-95">
             
-            {/* Modal Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-brand-600/20 text-brand-400 border border-brand-500/30 flex items-center justify-center font-bold text-sm">
@@ -475,10 +586,8 @@ export default function AdminDashboard({ subView = 'stats' }) {
               </button>
             </div>
 
-            {/* Modal Body */}
             <div className="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
               
-              {/* Radar & Score Overview */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
@@ -510,7 +619,6 @@ export default function AdminDashboard({ subView = 'stats' }) {
                 </div>
               </div>
 
-              {/* Verified Submissions */}
               <div className="space-y-3">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   Verified Hands-on Submissions ({selectedStudent.submissions?.length || 0})
@@ -530,7 +638,6 @@ export default function AdminDashboard({ subView = 'stats' }) {
 
             </div>
 
-            {/* Modal Footer */}
             <div className="px-6 py-4 bg-slate-950 border-t border-slate-800 flex justify-end">
               <button
                 onClick={() => setSelectedStudent(null)}

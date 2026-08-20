@@ -253,4 +253,42 @@ router.get('/students/:id', async (req, res, next) => {
   }
 });
 
+/**
+ * POST /api/admin/assign-mission
+ * Allows faculty to assign a priority mission with a coaching note to a student
+ */
+router.post('/assign-mission', async (req, res, next) => {
+  try {
+    const { studentProfileId, missionId, facultyNote, deadline } = req.body;
+
+    if (!studentProfileId || !missionId) {
+      return res.status(400).json({ error: 'Student Profile ID and Mission ID are required.' });
+    }
+
+    const mission = await prisma.mission.findUnique({ where: { id: missionId } });
+    if (!mission) {
+      return res.status(404).json({ error: 'Mission not found.' });
+    }
+
+    const assignment = await prisma.facultyAssignment.create({
+      data: {
+        studentProfileId,
+        missionId,
+        facultyName: req.user.name || 'Faculty Advisor',
+        facultyNote: facultyNote || 'Prioritized by your academic faculty for upcoming placement preparation.',
+        deadline: deadline || 'Within 7 Days',
+        status: 'PENDING',
+        assignedAt: new Date()
+      }
+    });
+
+    res.status(201).json({
+      message: `Priority mission "${mission.title}" assigned to candidate successfully!`,
+      assignment
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

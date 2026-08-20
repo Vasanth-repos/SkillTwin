@@ -20,7 +20,8 @@ let data = {
   skillGraphs: [],
   missions: [],
   missionSubmissions: [],
-  readinessScoreHistories: []
+  readinessScoreHistories: [],
+  facultyAssignments: []
 };
 
 // Load existing database from disk if available
@@ -28,7 +29,19 @@ function loadFromDisk() {
   try {
     if (fs.existsSync(DB_FILE_PATH)) {
       const raw = fs.readFileSync(DB_FILE_PATH, 'utf8');
-      data = JSON.parse(raw);
+      const parsed = JSON.parse(raw);
+      data = {
+        users: [],
+        targetRoles: [],
+        studentProfiles: [],
+        skillGraphs: [],
+        missions: [],
+        missionSubmissions: [],
+        readinessScoreHistories: [],
+        facultyAssignments: [],
+        ...parsed
+      };
+      if (!data.facultyAssignments) data.facultyAssignments = [];
     }
   } catch (err) {
     console.warn('[DB] Warning: Could not read dev-store.json, using fresh store.', err.message);
@@ -160,16 +173,19 @@ function resolveIncludes(table, item, include) {
 function createModel(tableName) {
   return {
     async findUnique({ where, include } = {}) {
+      if (!data[tableName]) data[tableName] = [];
       const item = data[tableName].find(i => matchesWhere(i, where));
       return item ? resolveIncludes(tableName, item, include) : null;
     },
 
     async findFirst({ where, include } = {}) {
+      if (!data[tableName]) data[tableName] = [];
       const item = data[tableName].find(i => matchesWhere(i, where));
       return item ? resolveIncludes(tableName, item, include) : null;
     },
 
     async findMany({ where, include, orderBy, take, select } = {}) {
+      if (!data[tableName]) data[tableName] = [];
       let results = data[tableName].filter(i => matchesWhere(i, where));
 
       if (orderBy) {
@@ -287,6 +303,7 @@ const prisma = {
   mission: createModel('missions'),
   missionSubmission: createModel('missionSubmissions'),
   readinessScoreHistory: createModel('readinessScoreHistories'),
+  facultyAssignment: createModel('facultyAssignments'),
   async $disconnect() {
     persistToDisk();
   }

@@ -155,10 +155,11 @@
       "id": "24d56443-e687-4c19-b365-40e12aadd11b",
       "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
       "skillName": "System Design & Concurrency",
-      "currentScore": 52,
-      "lastEvidence": "Project: Distributed Key-Value Store",
+      "currentScore": 62,
+      "lastEvidence": "Skill Defense Drill: \"Distributed Systems & Caching Challenge\" (+10 pts)",
       "createdAt": "2026-08-20T08:45:24.692Z",
-      "updatedAt": "2026-08-20T08:45:24.692Z"
+      "updatedAt": "2026-08-20T14:49:30.369Z",
+      "lastUpdated": "2026-08-20T14:49:30.369Z"
     },
     {
       "id": "81ed72dc-fa6c-429c-88c2-d4f1c9efd565",
@@ -173,11 +174,11 @@
       "id": "7b75c31d-07e1-494a-9370-66c400346dcb",
       "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
       "skillName": "Docker & Containerization",
-      "currentScore": 97,
+      "currentScore": 100,
       "lastEvidence": "Completed Mission: \"Containerize a Microservice with Multi-Stage Dockerfile\" (+20 pts from verified repository)",
       "createdAt": "2026-08-20T08:45:24.692Z",
-      "updatedAt": "2026-08-20T09:26:58.601Z",
-      "lastUpdated": "2026-08-20T09:26:58.601Z"
+      "updatedAt": "2026-08-20T14:49:30.375Z",
+      "lastUpdated": "2026-08-20T14:49:30.375Z"
     },
     {
       "id": "c99df430-8628-4f78-be55-dae64e029d54",
@@ -538,6 +539,19 @@
       "evaluatedAt": "2026-08-20T09:26:58.599Z",
       "createdAt": "2026-08-20T09:26:58.599Z",
       "updatedAt": "2026-08-20T09:26:58.599Z"
+    },
+    {
+      "id": "b6f95bb0-ac3c-4411-bc8a-8cf6b99c5880",
+      "missionId": "5be86732-0fa2-4e2c-97e1-b09a843b02e2",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "submissionUrl": "Direct In-Browser Code Artifact",
+      "status": "EVALUATED",
+      "rubricResults": "[{\"id\":\"dock_1\",\"text\":\"Dockerfile is present in root with multi-stage build pattern\",\"points\":30,\"pointsEarned\":30,\"passed\":true,\"details\":\"Found Dockerfile with container build definitions.\"},{\"id\":\"dock_2\",\"text\":\"docker-compose.yml orchestrates web application and database services\",\"points\":30,\"pointsEarned\":30,\"passed\":true,\"details\":\"Found docker-compose multi-service orchestration file.\"},{\"id\":\"dock_3\",\"text\":\"README.md documents container startup and teardown commands\",\"points\":20,\"pointsEarned\":20,\"passed\":true,\"details\":\"Found README.md with project setup and operational instructions.\"},{\"id\":\"dock_4\",\"text\":\"Healthcheck endpoint or automated test verified\",\"points\":20,\"pointsEarned\":20,\"passed\":true,\"details\":\"Found test suite and automated assertion files.\"}]",
+      "scoreDelta": 20,
+      "submittedAt": "2026-08-20T14:49:30.375Z",
+      "evaluatedAt": "2026-08-20T14:49:30.375Z",
+      "createdAt": "2026-08-20T14:49:30.375Z",
+      "updatedAt": "2026-08-20T14:49:30.375Z"
     }
   ],
   "readinessScoreHistories": [
@@ -624,6 +638,48 @@
       "score": 86,
       "createdAt": "2026-08-20T09:26:58.602Z",
       "updatedAt": "2026-08-20T09:26:58.602Z"
+    },
+    {
+      "id": "27cbc9de-b347-4179-9c94-76820f8396d7",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 86,
+      "createdAt": "2026-08-20T14:48:52.637Z",
+      "updatedAt": "2026-08-20T14:48:52.637Z"
+    },
+    {
+      "id": "0b0a5c19-3fe0-426b-8819-1f3e5aa5e8d9",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 86,
+      "createdAt": "2026-08-20T14:49:18.956Z",
+      "updatedAt": "2026-08-20T14:49:18.956Z"
+    },
+    {
+      "id": "8cb3c2fb-028a-41ad-a3ec-14dffb5012fb",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 88,
+      "createdAt": "2026-08-20T14:49:30.370Z",
+      "updatedAt": "2026-08-20T14:49:30.370Z"
+    },
+    {
+      "id": "8cfc6d43-9533-442a-b54a-dc55452f1883",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 88,
+      "createdAt": "2026-08-20T14:49:30.376Z",
+      "updatedAt": "2026-08-20T14:49:30.376Z"
+    }
+  ],
+  "facultyAssignments": [
+    {
+      "id": "5d2e10a2-70f0-4de1-87fc-abc27b017a02",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "missionId": "5be86732-0fa2-4e2c-97e1-b09a843b02e2",
+      "facultyName": "Prof. Marcus Davis",
+      "facultyNote": "Please complete before campus placement interviews on Friday.",
+      "deadline": "Friday 5:00 PM",
+      "status": "PENDING",
+      "assignedAt": "2026-08-20T14:49:30.465Z",
+      "createdAt": "2026-08-20T14:49:30.465Z",
+      "updatedAt": "2026-08-20T14:49:30.465Z"
     }
   ]
 }

@@ -17,7 +17,7 @@ const { safeJsonParse } = require('./skillEngine');
  * @param {Array} customFilesList - Optional manual file list for offline/demo tests
  * @returns {Promise<Object>} Evaluation results and score delta
  */
-async function evaluateMissionSubmission(mission, submissionUrl, customFilesList = null) {
+async function evaluateMissionSubmission(mission, submissionUrl, customFilesList = null, directCodeFiles = null) {
   const checklistItems = safeJsonParse(mission.checklistItems, []);
   const expectedFiles = safeJsonParse(mission.expectedFiles, []);
 
@@ -25,7 +25,10 @@ async function evaluateMissionSubmission(mission, submissionUrl, customFilesList
   let repoFiles = [];
   let inspectionSource = 'Simulated Verification Sandbox';
 
-  if (customFilesList && Array.isArray(customFilesList) && customFilesList.length > 0) {
+  if (directCodeFiles && typeof directCodeFiles === 'object' && Object.keys(directCodeFiles).length > 0) {
+    repoFiles = Object.keys(directCodeFiles).map(f => f.toLowerCase());
+    inspectionSource = 'Live In-Browser Code & Artifact Evaluation';
+  } else if (customFilesList && Array.isArray(customFilesList) && customFilesList.length > 0) {
     repoFiles = customFilesList.map(f => f.toLowerCase());
     inspectionSource = 'Direct Artifact Upload Inspection';
   } else if (isValidGithubUrl(submissionUrl)) {

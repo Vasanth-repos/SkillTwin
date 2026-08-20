@@ -40,6 +40,22 @@ router.get('/me', requireAuth, async (req, res, next) => {
     const gaps = calculateGaps(profile.skillGraphs, roleRequirements);
     const readiness = calculateReadinessScore(profile.skillGraphs, roleRequirements);
 
+    const facultyAssignments = await prisma.facultyAssignment.findMany({
+      where: { studentProfileId: profile.id, status: 'PENDING' }
+    });
+
+    const enrichedAssignments = await Promise.all(facultyAssignments.map(async a => {
+      const mission = await prisma.mission.findUnique({ where: { id: a.missionId } });
+      return {
+        ...a,
+        mission: mission ? {
+          ...mission,
+          checklistItems: safeJsonParse(mission.checklistItems, []),
+          expectedFiles: safeJsonParse(mission.expectedFiles, [])
+        } : null
+      };
+    }));
+
     res.json({
       profile: {
         ...profile,
@@ -47,6 +63,7 @@ router.get('/me', requireAuth, async (req, res, next) => {
         languages: safeJsonParse(profile.languages, []),
         projects: safeJsonParse(profile.projects, []),
         certifications: safeJsonParse(profile.certifications, []),
+        facultyAssignments: enrichedAssignments,
         targetRole: profile.targetRole ? {
           ...profile.targetRole,
           skillRequirements: roleRequirements

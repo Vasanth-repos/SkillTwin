@@ -92,11 +92,13 @@ router.post('/:id/submit', requireAuth, async (req, res, next) => {
       return res.status(403).json({ error: 'Only student accounts can submit mission evidence.' });
     }
 
-    const { submissionUrl, customFilesList } = req.body;
+    const { submissionUrl, customFilesList, directCodeFiles } = req.body;
 
-    if (!submissionUrl || submissionUrl.trim() === '') {
-      return res.status(400).json({ error: 'Please provide a valid repository or artifact submission URL.' });
+    if ((!submissionUrl || submissionUrl.trim() === '') && !directCodeFiles) {
+      return res.status(400).json({ error: 'Please provide a valid repository URL or direct code artifacts.' });
     }
+
+    const effectiveUrl = submissionUrl && submissionUrl.trim() !== '' ? submissionUrl.trim() : 'Direct In-Browser Code Artifact';
 
     const mission = await prisma.mission.findUnique({
       where: { id: req.params.id },
@@ -120,14 +122,14 @@ router.post('/:id/submit', requireAuth, async (req, res, next) => {
     }
 
     // 1. Run deterministic rubric evaluation
-    const evaluation = await evaluateMissionSubmission(mission, submissionUrl.trim(), customFilesList);
+    const evaluation = await evaluateMissionSubmission(mission, effectiveUrl, customFilesList, directCodeFiles);
 
     // 2. Save submission log
     const submissionRecord = await prisma.missionSubmission.create({
       data: {
         missionId: mission.id,
         studentProfileId: studentProfile.id,
-        submissionUrl: submissionUrl.trim(),
+        submissionUrl: effectiveUrl,
         status: 'EVALUATED',
         rubricResults: JSON.stringify(evaluation.rubricResults),
         scoreDelta: evaluation.scoreDelta,
