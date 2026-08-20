@@ -8,6 +8,7 @@ import StudentDashboard from './pages/StudentDashboard';
 import MissionsPage from './pages/MissionsPage';
 import ProfileEditorPage from './pages/ProfileEditorPage';
 import AdminDashboard from './pages/AdminDashboard';
+import JudgeDemoBar from './components/JudgeDemoBar';
 import { Loader2 } from 'lucide-react';
 
 function AppContent() {
@@ -29,7 +30,7 @@ function AppContent() {
   if (!user) {
     if (showAuthScreen) {
       return (
-        <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+        <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col pb-16">
           <header className="px-6 py-4 border-b border-slate-800/80 flex items-center justify-between">
             <button
               onClick={() => setShowAuthScreen(false)}
@@ -39,14 +40,20 @@ function AppContent() {
             </button>
           </header>
           <AuthPage />
+          <JudgeDemoBar />
         </div>
       );
     }
-    return <LandingPage onGetStarted={() => setShowAuthScreen(true)} />;
+    return (
+      <div className="relative pb-16">
+        <LandingPage onGetStarted={() => setShowAuthScreen(true)} />
+        <JudgeDemoBar />
+      </div>
+    );
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-brand-500 selection:text-white">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-brand-500 selection:text-white pb-20">
       
       {/* Top Bar Navigation */}
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -75,9 +82,12 @@ function AppContent() {
 
       </main>
 
+      {/* Persistent Judge Demo Toolbar */}
+      <JudgeDemoBar />
+
       {/* Footer */}
       <footer className="border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500">
-        <p>SkillTwin Digital Career Twin & Evidence Engine • MVP Scope Boundary Realized</p>
+        <p>SkillTwin Digital Career Twin & Evidence Engine • Enterprise Grade</p>
       </footer>
 
     </div>

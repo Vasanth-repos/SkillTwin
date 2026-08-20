@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  skilltwin-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: skilltwin-platform
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - JWT_SECRET=skilltwin_production_secure_secret_2026
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:5000/api/health').then(r => r.ok ? process.exit(0) : process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 3

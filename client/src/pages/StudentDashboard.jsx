@@ -10,7 +10,9 @@ import MilestoneBadges from '../components/MilestoneBadges';
 import RoleBenchmarkMatrix from '../components/RoleBenchmarkMatrix';
 import CredentialExportModal from '../components/CredentialExportModal';
 import SkillDefenseDrillModal from '../components/SkillDefenseDrillModal';
+import ProjectDefenseModal from '../components/ProjectDefenseModal';
 import CompanyTierSelector from '../components/CompanyTierSelector';
+import PredictiveTrajectorySimulator from '../components/PredictiveTrajectorySimulator';
 import { 
   Target, 
   Compass, 
@@ -28,6 +30,7 @@ import {
   Share2,
   GraduationCap,
   Zap,
+  BrainCircuit,
   Calendar,
   AlertCircle
 } from 'lucide-react';
@@ -36,6 +39,7 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
   const { profile, skillGraphs, gaps, readiness, readinessHistory, missions, submissions } = useSkillTwin();
   const [selectedMissionForModal, setSelectedMissionForModal] = useState(null);
   const [selectedDrillSkill, setSelectedDrillSkill] = useState(null);
+  const [showProjectDefense, setShowProjectDefense] = useState(false);
   const [showSimulatorModal, setShowSimulatorModal] = useState(false);
   const [showCredentialModal, setShowCredentialModal] = useState(false);
   const [activeCompanyTier, setActiveCompanyTier] = useState('STANDARD');
@@ -83,6 +87,14 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
               <span>Skill Defense Drill (+10 pts)</span>
             </button>
           )}
+
+          <button
+            onClick={() => setShowProjectDefense(true)}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-xs font-bold text-cyan-300 transition-colors"
+          >
+            <BrainCircuit className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Mock Interview Defense</span>
+          </button>
 
           <button
             onClick={() => setShowSimulatorModal(true)}
@@ -220,6 +232,13 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
           submissions={submissions} 
         />
       </div>
+
+      {/* Predictive Trajectory & Growth Simulator */}
+      <PredictiveTrajectorySimulator
+        currentReadiness={readiness?.readinessScore || 58}
+        gaps={gaps}
+        dsaCurrent={profile?.dsaProblemsSolved || 65}
+      />
 
       {/* Recommended Mission Callout Banner */}
       {topMission && !topMission.isCompleted && topGap && (
@@ -389,6 +408,13 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
         <SkillDefenseDrillModal
           skillName={selectedDrillSkill}
           onClose={() => setSelectedDrillSkill(null)}
+        />
+      )}
+
+      {/* Project Architecture Defense Modal */}
+      {showProjectDefense && (
+        <ProjectDefenseModal
+          onClose={() => setShowProjectDefense(false)}
         />
       )}
 
