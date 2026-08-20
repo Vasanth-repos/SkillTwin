@@ -1,0 +1,609 @@
+{
+  "users": [
+    {
+      "id": "0a250de5-0f53-4912-9f3d-6f32e99cc58f",
+      "name": "Alex Chen",
+      "email": "student@skilltwin.dev",
+      "passwordHash": "$2a$10$kxUTuMmtBPYGDE8uTkvoKeaZZplwtlZsVeZ3rxKDE7Td7RvAucZLq",
+      "role": "STUDENT",
+      "createdAt": "2026-08-20T08:45:24.691Z",
+      "updatedAt": "2026-08-20T08:45:24.691Z"
+    },
+    {
+      "id": "8d874979-70e9-474b-bab9-14cb3122718b",
+      "name": "Sarah Miller",
+      "email": "sarah@skilltwin.dev",
+      "passwordHash": "$2a$10$kxUTuMmtBPYGDE8uTkvoKeaZZplwtlZsVeZ3rxKDE7Td7RvAucZLq",
+      "role": "STUDENT",
+      "createdAt": "2026-08-20T08:45:24.693Z",
+      "updatedAt": "2026-08-20T08:45:24.693Z"
+    },
+    {
+      "id": "538c1099-f06d-4deb-96aa-984ae79a4209",
+      "name": "Jordan Lee",
+      "email": "dev@skilltwin.dev",
+      "passwordHash": "$2a$10$kxUTuMmtBPYGDE8uTkvoKeaZZplwtlZsVeZ3rxKDE7Td7RvAucZLq",
+      "role": "STUDENT",
+      "createdAt": "2026-08-20T08:45:24.695Z",
+      "updatedAt": "2026-08-20T08:45:24.695Z"
+    },
+    {
+      "id": "c8246ff1-7128-4a4a-b4bf-855f65ba5313",
+      "name": "Prof. Marcus Davis",
+      "email": "admin@skilltwin.dev",
+      "passwordHash": "$2a$10$kxUTuMmtBPYGDE8uTkvoKeaZZplwtlZsVeZ3rxKDE7Td7RvAucZLq",
+      "role": "COLLEGE_ADMIN",
+      "createdAt": "2026-08-20T08:45:24.742Z",
+      "updatedAt": "2026-08-20T08:45:24.742Z"
+    }
+  ],
+  "targetRoles": [
+    {
+      "id": "e94a7fe3-f40e-4972-8155-95bc86aae853",
+      "name": "Backend Software Engineer",
+      "category": "Software Engineering",
+      "description": "Designs scalable server-side architectures, database schemas, distributed workflows, and high-throughput REST/gRPC APIs.",
+      "icon": "server",
+      "skillRequirements": "[{\"skillName\":\"Relational Databases & SQL\",\"requiredPercentage\":90,\"importanceWeight\":1.9,\"relevanceWeight\":1.9},{\"skillName\":\"REST APIs\",\"requiredPercentage\":85,\"importanceWeight\":1.8,\"relevanceWeight\":1.8},{\"skillName\":\"System Design & Concurrency\",\"requiredPercentage\":80,\"importanceWeight\":1.7,\"relevanceWeight\":1.7},{\"skillName\":\"Docker & Containerization\",\"requiredPercentage\":75,\"importanceWeight\":1.5,\"relevanceWeight\":1.6},{\"skillName\":\"Data Structures & Algorithms\",\"requiredPercentage\":80,\"importanceWeight\":1.4,\"relevanceWeight\":1.5},{\"skillName\":\"Git & Version Control\",\"requiredPercentage\":70,\"importanceWeight\":1.2,\"relevanceWeight\":1.3}]",
+      "createdAt": "2026-08-20T08:45:24.684Z",
+      "updatedAt": "2026-08-20T08:45:24.685Z"
+    },
+    {
+      "id": "df14e52f-3182-4c64-a5fb-2606ae929b16",
+      "name": "Full-Stack Developer",
+      "category": "Web Development",
+      "description": "Builds end-to-end web applications with reactive client interfaces, robust backend services, and cloud deployments.",
+      "icon": "layout",
+      "skillRequirements": "[{\"skillName\":\"React & Modern Frontend\",\"requiredPercentage\":85,\"importanceWeight\":1.8,\"relevanceWeight\":1.9},{\"skillName\":\"REST APIs\",\"requiredPercentage\":80,\"importanceWeight\":1.7,\"relevanceWeight\":1.8},{\"skillName\":\"Relational Databases & SQL\",\"requiredPercentage\":75,\"importanceWeight\":1.5,\"relevanceWeight\":1.6},{\"skillName\":\"TypeScript & Type Safety\",\"requiredPercentage\":75,\"importanceWeight\":1.4,\"relevanceWeight\":1.5},{\"skillName\":\"State Management & UI Performance\",\"requiredPercentage\":70,\"importanceWeight\":1.3,\"relevanceWeight\":1.4},{\"skillName\":\"Git & Version Control\",\"requiredPercentage\":70,\"importanceWeight\":1.2,\"relevanceWeight\":1.3}]",
+      "createdAt": "2026-08-20T08:45:24.685Z",
+      "updatedAt": "2026-08-20T08:45:24.685Z"
+    },
+    {
+      "id": "aee3dd1f-71a2-4f08-8b5c-04d28c16d743",
+      "name": "Cloud DevOps Engineer",
+      "category": "Cloud & Infrastructure",
+      "description": "Automates deployment pipelines, provisions infrastructure as code, and manages containerized Kubernetes clusters in the cloud.",
+      "icon": "cloud",
+      "skillRequirements": "[{\"skillName\":\"Docker & Containerization\",\"requiredPercentage\":90,\"importanceWeight\":1.9,\"relevanceWeight\":1.9},{\"skillName\":\"CI/CD Pipelines & Automation\",\"requiredPercentage\":85,\"importanceWeight\":1.8,\"relevanceWeight\":1.8},{\"skillName\":\"Kubernetes & Orchestration\",\"requiredPercentage\":85,\"importanceWeight\":1.8,\"relevanceWeight\":1.8},{\"skillName\":\"Infrastructure as Code (Terraform)\",\"requiredPercentage\":80,\"importanceWeight\":1.7,\"relevanceWeight\":1.7},{\"skillName\":\"Linux & Bash Scripting\",\"requiredPercentage\":80,\"importanceWeight\":1.5,\"relevanceWeight\":1.6},{\"skillName\":\"Git & Version Control\",\"requiredPercentage\":75,\"importanceWeight\":1.3,\"relevanceWeight\":1.4}]",
+      "createdAt": "2026-08-20T08:45:24.686Z",
+      "updatedAt": "2026-08-20T08:45:24.686Z"
+    },
+    {
+      "id": "6660e279-5db9-4633-8d5b-53e77ed72612",
+      "name": "Data Analyst & Analytics Engineer",
+      "category": "Data & Analytics",
+      "description": "Transforms raw relational data into dimensional models, automated ETL data pipelines, and executive business intelligence dashboards.",
+      "icon": "database",
+      "skillRequirements": "[{\"skillName\":\"Relational Databases & SQL\",\"requiredPercentage\":90,\"importanceWeight\":1.9,\"relevanceWeight\":1.9},{\"skillName\":\"Python for Data Analysis\",\"requiredPercentage\":85,\"importanceWeight\":1.8,\"relevanceWeight\":1.8},{\"skillName\":\"Business Intelligence & Dashboards\",\"requiredPercentage\":80,\"importanceWeight\":1.6,\"relevanceWeight\":1.7},{\"skillName\":\"ETL Pipelines & Data Quality\",\"requiredPercentage\":75,\"importanceWeight\":1.5,\"relevanceWeight\":1.6},{\"skillName\":\"Data Structures & Algorithms\",\"requiredPercentage\":65,\"importanceWeight\":1.2,\"relevanceWeight\":1.3},{\"skillName\":\"Git & Version Control\",\"requiredPercentage\":65,\"importanceWeight\":1.1,\"relevanceWeight\":1.2}]",
+      "createdAt": "2026-08-20T08:45:24.686Z",
+      "updatedAt": "2026-08-20T08:45:24.686Z"
+    }
+  ],
+  "studentProfiles": [
+    {
+      "id": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "userId": "0a250de5-0f53-4912-9f3d-6f32e99cc58f",
+      "degree": "B.S. in Computer Science (Junior)",
+      "academicSubjects": "[\"Data Structures\",\"Algorithms\",\"Database Management Systems\",\"Computer Networks\"]",
+      "languages": "[\"Java\",\"Python\",\"SQL\",\"JavaScript\"]",
+      "dsaProblemsSolved": 165,
+      "projects": "[{\"title\":\"Distributed Key-Value Store\",\"techStack\":[\"Java\",\"REST APIs\",\"Relational Databases & SQL\"],\"complexity\":\"INTERMEDIATE\",\"repoUrl\":\"https://github.com/alexchen/distributed-kv\",\"description\":\"Multi-threaded key-value store with replication and write-ahead log.\"},{\"title\":\"Campus Course Registration API\",\"techStack\":[\"Node.js\",\"REST APIs\",\"PostgreSQL\"],\"complexity\":\"INTERMEDIATE\",\"repoUrl\":\"https://github.com/alexchen/course-reg-api\",\"description\":\"RESTful API with JWT auth and concurrent enrollment transaction isolation.\"}]",
+      "certifications": "[\"AWS Certified Cloud Practitioner\"]",
+      "githubUrl": "https://github.com/alexchen",
+      "targetRoleId": "e94a7fe3-f40e-4972-8155-95bc86aae853",
+      "createdAt": "2026-08-20T08:45:24.691Z",
+      "updatedAt": "2026-08-20T08:45:24.691Z"
+    },
+    {
+      "id": "0c9b6af4-8ed8-4cf9-80d8-fd4ddeacfa5f",
+      "userId": "8d874979-70e9-474b-bab9-14cb3122718b",
+      "degree": "B.S. in Software Engineering (Senior)",
+      "academicSubjects": "[\"Web Development\",\"Human Computer Interaction\",\"Database Systems\",\"Cloud Computing\"]",
+      "languages": "[\"TypeScript\",\"JavaScript\",\"Python\",\"HTML/CSS\"]",
+      "dsaProblemsSolved": 240,
+      "projects": "[{\"title\":\"Collaborative Real-Time Whiteboard\",\"techStack\":[\"React & Modern Frontend\",\"TypeScript & Type Safety\",\"State Management & UI Performance\"],\"complexity\":\"ADVANCED\",\"repoUrl\":\"https://github.com/sarahmiller/collab-board\",\"description\":\"CRDT-based collaborative canvas with optimistic UI updates and WebSockets.\"},{\"title\":\"SaaS Billing & Subscription Portal\",\"techStack\":[\"React & Modern Frontend\",\"REST APIs\",\"Relational Databases & SQL\"],\"complexity\":\"INTERMEDIATE\",\"repoUrl\":\"https://github.com/sarahmiller/saas-billing\",\"description\":\"Full-stack customer portal with Stripe webhooks and PostgreSQL.\"}]",
+      "certifications": "[\"Meta Front-End Developer Professional Certificate\"]",
+      "githubUrl": "https://github.com/sarahmiller",
+      "targetRoleId": "df14e52f-3182-4c64-a5fb-2606ae929b16",
+      "createdAt": "2026-08-20T08:45:24.693Z",
+      "updatedAt": "2026-08-20T08:45:24.693Z"
+    },
+    {
+      "id": "74a2cc9d-4d6a-4624-80a0-10a23b2f8bdf",
+      "userId": "538c1099-f06d-4deb-96aa-984ae79a4209",
+      "degree": "B.S. in Information Systems (Sophomore)",
+      "academicSubjects": "[\"Operating Systems\",\"Linux Administration\"]",
+      "languages": "[\"Bash\",\"Python\",\"Go\"]",
+      "dsaProblemsSolved": 40,
+      "projects": "[{\"title\":\"Linux Server Automation Scripts\",\"techStack\":[\"Linux & Bash Scripting\"],\"complexity\":\"BEGINNER\",\"repoUrl\":\"https://github.com/jordanlee/server-scripts\",\"description\":\"Bash utility scripts for automated backups and system health logging.\"}]",
+      "certifications": "[\"Linux Foundation Certified Associate\"]",
+      "githubUrl": "https://github.com/jordanlee",
+      "targetRoleId": "aee3dd1f-71a2-4f08-8b5c-04d28c16d743",
+      "createdAt": "2026-08-20T08:45:24.740Z",
+      "updatedAt": "2026-08-20T08:45:24.740Z"
+    }
+  ],
+  "skillGraphs": [
+    {
+      "id": "9e816168-33d4-4503-af7b-f338d380da1e",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "skillName": "Relational Databases & SQL",
+      "currentScore": 78,
+      "lastEvidence": "Project: Campus Course Registration API + DBMS Course",
+      "createdAt": "2026-08-20T08:45:24.692Z",
+      "updatedAt": "2026-08-20T08:45:24.692Z"
+    },
+    {
+      "id": "3ab4abf8-cbd7-4bb7-8383-e55d34905ad4",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "skillName": "REST APIs",
+      "currentScore": 75,
+      "lastEvidence": "Project: Campus Course Registration API",
+      "createdAt": "2026-08-20T08:45:24.692Z",
+      "updatedAt": "2026-08-20T08:45:24.692Z"
+    },
+    {
+      "id": "46a3063a-4c44-43c0-8abd-c24c592d1179",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "skillName": "Data Structures & Algorithms",
+      "currentScore": 68,
+      "lastEvidence": "DSA: 165 problems solved on LeetCode",
+      "createdAt": "2026-08-20T08:45:24.692Z",
+      "updatedAt": "2026-08-20T08:45:24.692Z"
+    },
+    {
+      "id": "24d56443-e687-4c19-b365-40e12aadd11b",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "skillName": "System Design & Concurrency",
+      "currentScore": 52,
+      "lastEvidence": "Project: Distributed Key-Value Store",
+      "createdAt": "2026-08-20T08:45:24.692Z",
+      "updatedAt": "2026-08-20T08:45:24.692Z"
+    },
+    {
+      "id": "81ed72dc-fa6c-429c-88c2-d4f1c9efd565",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "skillName": "Git & Version Control",
+      "currentScore": 70,
+      "lastEvidence": "Active GitHub repository history",
+      "createdAt": "2026-08-20T08:45:24.692Z",
+      "updatedAt": "2026-08-20T08:45:24.692Z"
+    },
+    {
+      "id": "7b75c31d-07e1-494a-9370-66c400346dcb",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "skillName": "Docker & Containerization",
+      "currentScore": 77,
+      "lastEvidence": "Completed Mission: \"Containerize a Microservice with Multi-Stage Dockerfile\" (+20 pts from verified repository)",
+      "createdAt": "2026-08-20T08:45:24.692Z",
+      "updatedAt": "2026-08-20T08:51:27.087Z",
+      "lastUpdated": "2026-08-20T08:51:27.087Z"
+    },
+    {
+      "id": "c99df430-8628-4f78-be55-dae64e029d54",
+      "studentProfileId": "0c9b6af4-8ed8-4cf9-80d8-fd4ddeacfa5f",
+      "skillName": "React & Modern Frontend",
+      "currentScore": 88,
+      "lastEvidence": "Project: Collaborative Whiteboard + Meta Front-End Cert",
+      "createdAt": "2026-08-20T08:45:24.694Z",
+      "updatedAt": "2026-08-20T08:45:24.694Z"
+    },
+    {
+      "id": "e8e57d9d-483a-4797-92ca-e49e4935a898",
+      "studentProfileId": "0c9b6af4-8ed8-4cf9-80d8-fd4ddeacfa5f",
+      "skillName": "REST APIs",
+      "currentScore": 82,
+      "lastEvidence": "Project: SaaS Billing Portal",
+      "createdAt": "2026-08-20T08:45:24.694Z",
+      "updatedAt": "2026-08-20T08:45:24.694Z"
+    },
+    {
+      "id": "89905e11-c475-4d2f-b1c3-b8c63167bbc9",
+      "studentProfileId": "0c9b6af4-8ed8-4cf9-80d8-fd4ddeacfa5f",
+      "skillName": "TypeScript & Type Safety",
+      "currentScore": 85,
+      "lastEvidence": "Project: Collaborative Whiteboard",
+      "createdAt": "2026-08-20T08:45:24.694Z",
+      "updatedAt": "2026-08-20T08:45:24.694Z"
+    },
+    {
+      "id": "47ad00c0-2ab1-4b59-b296-28aaa215fafa",
+      "studentProfileId": "0c9b6af4-8ed8-4cf9-80d8-fd4ddeacfa5f",
+      "skillName": "Relational Databases & SQL",
+      "currentScore": 78,
+      "lastEvidence": "Project: SaaS Billing Portal + Database Course",
+      "createdAt": "2026-08-20T08:45:24.694Z",
+      "updatedAt": "2026-08-20T08:45:24.694Z"
+    },
+    {
+      "id": "78198825-6a62-4cf6-a5d6-acf378db3036",
+      "studentProfileId": "0c9b6af4-8ed8-4cf9-80d8-fd4ddeacfa5f",
+      "skillName": "State Management & UI Performance",
+      "currentScore": 84,
+      "lastEvidence": "Project: Collaborative Whiteboard",
+      "createdAt": "2026-08-20T08:45:24.694Z",
+      "updatedAt": "2026-08-20T08:45:24.694Z"
+    },
+    {
+      "id": "6aece037-8e26-4aad-a2b7-ea517f4de02d",
+      "studentProfileId": "0c9b6af4-8ed8-4cf9-80d8-fd4ddeacfa5f",
+      "skillName": "Git & Version Control",
+      "currentScore": 85,
+      "lastEvidence": "Active GitHub repository portfolio",
+      "createdAt": "2026-08-20T08:45:24.694Z",
+      "updatedAt": "2026-08-20T08:45:24.694Z"
+    },
+    {
+      "id": "8053337e-cd73-4d85-8645-848e02dc22c9",
+      "studentProfileId": "74a2cc9d-4d6a-4624-80a0-10a23b2f8bdf",
+      "skillName": "Linux & Bash Scripting",
+      "currentScore": 65,
+      "lastEvidence": "Project: Linux Server Automation Scripts",
+      "createdAt": "2026-08-20T08:45:24.741Z",
+      "updatedAt": "2026-08-20T08:45:24.741Z"
+    },
+    {
+      "id": "86f4e69c-0345-4d29-9f93-fbf587a3e3ea",
+      "studentProfileId": "74a2cc9d-4d6a-4624-80a0-10a23b2f8bdf",
+      "skillName": "Git & Version Control",
+      "currentScore": 50,
+      "lastEvidence": "GitHub repository history",
+      "createdAt": "2026-08-20T08:45:24.741Z",
+      "updatedAt": "2026-08-20T08:45:24.741Z"
+    },
+    {
+      "id": "317672dc-8067-4e94-ab82-a692e9835bd1",
+      "studentProfileId": "74a2cc9d-4d6a-4624-80a0-10a23b2f8bdf",
+      "skillName": "Docker & Containerization",
+      "currentScore": 30,
+      "lastEvidence": "Self-assessment baseline",
+      "createdAt": "2026-08-20T08:45:24.741Z",
+      "updatedAt": "2026-08-20T08:45:24.741Z"
+    },
+    {
+      "id": "80c78e27-c35d-4420-bd23-4f4c45123f48",
+      "studentProfileId": "74a2cc9d-4d6a-4624-80a0-10a23b2f8bdf",
+      "skillName": "CI/CD Pipelines & Automation",
+      "currentScore": 25,
+      "lastEvidence": "Self-assessment baseline",
+      "createdAt": "2026-08-20T08:45:24.741Z",
+      "updatedAt": "2026-08-20T08:45:24.741Z"
+    },
+    {
+      "id": "e94bb6ef-a413-4e40-9e65-bc9f97257132",
+      "studentProfileId": "74a2cc9d-4d6a-4624-80a0-10a23b2f8bdf",
+      "skillName": "Kubernetes & Orchestration",
+      "currentScore": 15,
+      "lastEvidence": "Self-assessment baseline",
+      "createdAt": "2026-08-20T08:45:24.741Z",
+      "updatedAt": "2026-08-20T08:45:24.741Z"
+    },
+    {
+      "id": "be0e2c6e-1d8e-4d98-978b-9fdd6fe705d3",
+      "studentProfileId": "74a2cc9d-4d6a-4624-80a0-10a23b2f8bdf",
+      "skillName": "Infrastructure as Code (Terraform)",
+      "currentScore": 10,
+      "lastEvidence": "Self-assessment baseline",
+      "createdAt": "2026-08-20T08:45:24.741Z",
+      "updatedAt": "2026-08-20T08:45:24.741Z"
+    }
+  ],
+  "missions": [
+    {
+      "id": "5be86732-0fa2-4e2c-97e1-b09a843b02e2",
+      "targetSkill": "Docker & Containerization",
+      "title": "Containerize a Microservice with Multi-Stage Dockerfile",
+      "description": "Write a production-ready multi-stage Dockerfile and docker-compose.yml to containerize an Express API with PostgreSQL. Ensure non-root user execution and minimal image size.",
+      "difficulty": "INTERMEDIATE",
+      "relatedRoleId": "e94a7fe3-f40e-4972-8155-95bc86aae853",
+      "estimatedHours": 3,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/docker-microservice-starter",
+      "checklistItems": "[{\"id\":\"dock_1\",\"text\":\"Dockerfile is present in root with multi-stage build pattern\",\"points\":30,\"rulePattern\":\"dockerfile\"},{\"id\":\"dock_2\",\"text\":\"docker-compose.yml orchestrates web application and database services\",\"points\":30,\"rulePattern\":\"docker-compose\"},{\"id\":\"dock_3\",\"text\":\"README.md documents container startup and teardown commands\",\"points\":20,\"rulePattern\":\"readme\"},{\"id\":\"dock_4\",\"text\":\"Healthcheck endpoint or automated test verified\",\"points\":20,\"rulePattern\":\"test\"}]",
+      "expectedFiles": "[\"Dockerfile\",\"docker-compose.yml\",\"README.md\",\".dockerignore\",\"src/index.js\"]",
+      "createdAt": "2026-08-20T08:45:24.687Z",
+      "updatedAt": "2026-08-20T08:45:24.687Z"
+    },
+    {
+      "id": "92f707cd-e2a9-4d2a-9b9c-074d3b6de0da",
+      "targetSkill": "Relational Databases & SQL",
+      "title": "Design High-Performance SQL Schema & Migration Suite",
+      "description": "Model a relational schema for a multi-tenant e-commerce backend with B-tree indexes on foreign keys, audit timestamp triggers, and parameterized queries.",
+      "difficulty": "ADVANCED",
+      "relatedRoleId": "e94a7fe3-f40e-4972-8155-95bc86aae853",
+      "estimatedHours": 4,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/sql-schema-starter",
+      "checklistItems": "[{\"id\":\"sql_1\",\"text\":\"SQL schema file with foreign key constraints and primary keys\",\"points\":35,\"rulePattern\":\"sql\"},{\"id\":\"sql_2\",\"text\":\"Automated database migration scripts or Prisma schema\",\"points\":35,\"rulePattern\":\"schema\"},{\"id\":\"sql_3\",\"text\":\"Automated query performance or integration test suite\",\"points\":30,\"rulePattern\":\"test\"}]",
+      "expectedFiles": "[\"prisma/schema.prisma\",\"src/migrations/001_init.sql\",\"tests/db.test.js\",\"README.md\"]",
+      "createdAt": "2026-08-20T08:45:24.687Z",
+      "updatedAt": "2026-08-20T08:45:24.687Z"
+    },
+    {
+      "id": "f0bd9b67-8f61-4bc2-9e2f-c1decaba5ced",
+      "targetSkill": "REST APIs",
+      "title": "Implement Idempotent REST API with JWT Auth & Rate Limiting",
+      "description": "Build a production-grade Express REST API with input validation, JWT middleware, structured error responses, and token bucket rate limiting.",
+      "difficulty": "INTERMEDIATE",
+      "relatedRoleId": "e94a7fe3-f40e-4972-8155-95bc86aae853",
+      "estimatedHours": 3,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/express-auth-starter",
+      "checklistItems": "[{\"id\":\"api_1\",\"text\":\"REST API routing controllers with parameter validation\",\"points\":35,\"rulePattern\":\"api\"},{\"id\":\"api_2\",\"text\":\"Automated endpoint unit & integration test coverage\",\"points\":35,\"rulePattern\":\"test\"},{\"id\":\"api_3\",\"text\":\"README with OpenAPI / curl request documentation\",\"points\":30,\"rulePattern\":\"readme\"}]",
+      "expectedFiles": "[\"src/routes/api.js\",\"src/middleware/auth.js\",\"tests/api.test.js\",\"README.md\"]",
+      "createdAt": "2026-08-20T08:45:24.687Z",
+      "updatedAt": "2026-08-20T08:45:24.687Z"
+    },
+    {
+      "id": "e757033c-fc6a-435f-bc29-19bb4aec013b",
+      "targetSkill": "System Design & Concurrency",
+      "title": "Architect Distributed Redis Caching & Queue System",
+      "description": "Implement an asynchronous worker queue with Redis BullMQ to handle background image processing jobs without blocking the main event loop.",
+      "difficulty": "ADVANCED",
+      "relatedRoleId": "e94a7fe3-f40e-4972-8155-95bc86aae853",
+      "estimatedHours": 5,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/redis-queue-starter",
+      "checklistItems": "[{\"id\":\"sys_1\",\"text\":\"Producer API endpoint enqueueing background jobs\",\"points\":35,\"rulePattern\":\"api\"},{\"id\":\"sys_2\",\"text\":\"Worker daemon process consuming queue messages\",\"points\":35,\"rulePattern\":\"worker\"},{\"id\":\"sys_3\",\"text\":\"docker-compose with Redis and worker containers\",\"points\":30,\"rulePattern\":\"docker-compose\"}]",
+      "expectedFiles": "[\"src/queue.js\",\"src/worker.js\",\"docker-compose.yml\",\"README.md\"]",
+      "createdAt": "2026-08-20T08:45:24.688Z",
+      "updatedAt": "2026-08-20T08:45:24.688Z"
+    },
+    {
+      "id": "aea2f0c4-1b6d-48bc-a060-ce7d62adf33b",
+      "targetSkill": "React & Modern Frontend",
+      "title": "Build Accessible Component Design System with Tailwind",
+      "description": "Develop a reusable UI component library with dark/light themes, keyboard navigation, ARIA attributes, and responsive layout primitives.",
+      "difficulty": "INTERMEDIATE",
+      "relatedRoleId": "df14e52f-3182-4c64-a5fb-2606ae929b16",
+      "estimatedHours": 3,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/react-design-system",
+      "checklistItems": "[{\"id\":\"fe_1\",\"text\":\"Reusable React components with prop validation\",\"points\":40,\"rulePattern\":\"src/components\"},{\"id\":\"fe_2\",\"text\":\"Tailwind CSS design token configuration\",\"points\":30,\"rulePattern\":\"tailwind\"},{\"id\":\"fe_3\",\"text\":\"Component unit tests with React Testing Library\",\"points\":30,\"rulePattern\":\"test\"}]",
+      "expectedFiles": "[\"src/components/Button.jsx\",\"tailwind.config.js\",\"src/components/Button.test.jsx\",\"README.md\"]",
+      "createdAt": "2026-08-20T08:45:24.688Z",
+      "updatedAt": "2026-08-20T08:45:24.688Z"
+    },
+    {
+      "id": "3980680f-b919-4cd0-9673-135b195a25dc",
+      "targetSkill": "TypeScript & Type Safety",
+      "title": "End-to-End Type Safety with Shared Zod Schemas",
+      "description": "Construct a full-stack monorepo sharing contract schemas between frontend forms and backend API handlers using TypeScript and Zod.",
+      "difficulty": "INTERMEDIATE",
+      "relatedRoleId": "df14e52f-3182-4c64-a5fb-2606ae929b16",
+      "estimatedHours": 3,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/ts-zod-starter",
+      "checklistItems": "[{\"id\":\"ts_1\",\"text\":\"Shared Zod validation schemas and TypeScript types\",\"points\":40,\"rulePattern\":\"schema\"},{\"id\":\"ts_2\",\"text\":\"Type-checked API handlers with zero `any` types\",\"points\":30,\"rulePattern\":\"route\"},{\"id\":\"ts_3\",\"text\":\"Automated type verification script in package.json\",\"points\":30,\"rulePattern\":\"package.json\"}]",
+      "expectedFiles": "[\"src/schemas/user.ts\",\"src/routes/user.ts\",\"tsconfig.json\",\"package.json\"]",
+      "createdAt": "2026-08-20T08:45:24.688Z",
+      "updatedAt": "2026-08-20T08:45:24.688Z"
+    },
+    {
+      "id": "f9b7cf85-8a0a-4368-979a-a427b1d77048",
+      "targetSkill": "State Management & UI Performance",
+      "title": "Implement Optimistic UI & Infinite Scroll Cache",
+      "description": "Build an offline-resilient feed interface with TanStack Query / Zustand, handling optimistic comment posting and pagination cache invalidation.",
+      "difficulty": "ADVANCED",
+      "relatedRoleId": "df14e52f-3182-4c64-a5fb-2606ae929b16",
+      "estimatedHours": 4,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/optimistic-ui-starter",
+      "checklistItems": "[{\"id\":\"st_1\",\"text\":\"State store with optimistic mutation rollbacks\",\"points\":40,\"rulePattern\":\"store\"},{\"id\":\"st_2\",\"text\":\"Infinite scroll virtualized list component\",\"points\":30,\"rulePattern\":\"component\"},{\"id\":\"st_3\",\"text\":\"Automated hook tests simulating network latency\",\"points\":30,\"rulePattern\":\"test\"}]",
+      "expectedFiles": "[\"src/store/useStore.js\",\"src/components/Feed.jsx\",\"tests/store.test.js\",\"README.md\"]",
+      "createdAt": "2026-08-20T08:45:24.688Z",
+      "updatedAt": "2026-08-20T08:45:24.688Z"
+    },
+    {
+      "id": "b576bff8-3bb7-42c9-9ddc-20dd06ef8da6",
+      "targetSkill": "CI/CD Pipelines & Automation",
+      "title": "Automate Multi-Environment CI/CD with GitHub Actions",
+      "description": "Create a robust GitHub Actions workflow that executes linting, unit tests, Docker container builds, security scans (Trivy), and staging deployment.",
+      "difficulty": "INTERMEDIATE",
+      "relatedRoleId": "aee3dd1f-71a2-4f08-8b5c-04d28c16d743",
+      "estimatedHours": 3,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/github-actions-ci",
+      "checklistItems": "[{\"id\":\"ci_1\",\"text\":\"GitHub Actions workflow YAML file in .github/workflows\",\"points\":40,\"rulePattern\":\"workflow\"},{\"id\":\"ci_2\",\"text\":\"Automated test execution and Docker build matrix step\",\"points\":30,\"rulePattern\":\"dockerfile\"},{\"id\":\"ci_3\",\"text\":\"README documenting pipeline environment variables and badges\",\"points\":30,\"rulePattern\":\"readme\"}]",
+      "expectedFiles": "[\".github/workflows/ci.yml\",\"Dockerfile\",\"tests/app.test.js\",\"README.md\"]",
+      "createdAt": "2026-08-20T08:45:24.689Z",
+      "updatedAt": "2026-08-20T08:45:24.689Z"
+    },
+    {
+      "id": "1c6c4f6c-be4b-4283-925f-9eefba589583",
+      "targetSkill": "Kubernetes & Orchestration",
+      "title": "Deploy Microservices Cluster to Kubernetes with Helm",
+      "description": "Write Helm chart templates for Deployment, ClusterIP Service, ConfigMap, and Ingress with Horizontal Pod Autoscaling (HPA).",
+      "difficulty": "ADVANCED",
+      "relatedRoleId": "aee3dd1f-71a2-4f08-8b5c-04d28c16d743",
+      "estimatedHours": 5,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/helm-k8s-starter",
+      "checklistItems": "[{\"id\":\"k8s_1\",\"text\":\"Helm Chart.yaml and values.yaml definitions\",\"points\":35,\"rulePattern\":\"chart\"},{\"id\":\"k8s_2\",\"text\":\"Kubernetes Deployment and Service YAML manifests\",\"points\":35,\"rulePattern\":\"deployment\"},{\"id\":\"k8s_3\",\"text\":\"Ingress and Horizontal Pod Autoscaler configuration\",\"points\":30,\"rulePattern\":\"hpa\"}]",
+      "expectedFiles": "[\"helm/Chart.yaml\",\"helm/values.yaml\",\"helm/templates/deployment.yaml\",\"README.md\"]",
+      "createdAt": "2026-08-20T08:45:24.689Z",
+      "updatedAt": "2026-08-20T08:45:24.689Z"
+    },
+    {
+      "id": "49a1e7cc-f765-40f3-90f2-3d1a8cb52810",
+      "targetSkill": "Infrastructure as Code (Terraform)",
+      "title": "Provision Cloud VPC & Database Cluster with Terraform",
+      "description": "Author reusable Terraform modules to provision isolated public/private subnets, security groups, and an encrypted PostgreSQL database instance.",
+      "difficulty": "ADVANCED",
+      "relatedRoleId": "aee3dd1f-71a2-4f08-8b5c-04d28c16d743",
+      "estimatedHours": 4,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/terraform-vpc-starter",
+      "checklistItems": "[{\"id\":\"tf_1\",\"text\":\"Terraform main.tf and variables.tf with provider config\",\"points\":40,\"rulePattern\":\"terraform\"},{\"id\":\"tf_2\",\"text\":\"Modular VPC and Database resource declarations\",\"points\":30,\"rulePattern\":\"module\"},{\"id\":\"tf_3\",\"text\":\"README with `terraform plan` execution proof and diagrams\",\"points\":30,\"rulePattern\":\"readme\"}]",
+      "expectedFiles": "[\"main.tf\",\"variables.tf\",\"outputs.tf\",\"modules/vpc/main.tf\",\"README.md\"]",
+      "createdAt": "2026-08-20T08:45:24.689Z",
+      "updatedAt": "2026-08-20T08:45:24.689Z"
+    },
+    {
+      "id": "64094169-7559-4a5f-8b17-9432e755d090",
+      "targetSkill": "Linux & Bash Scripting",
+      "title": "Author Automated Log Rotation & Server Health Daemon",
+      "description": "Write POSIX-compliant Bash automation scripts for log rotation, disk memory threshold alerting, and systemd service management.",
+      "difficulty": "BEGINNER",
+      "relatedRoleId": "aee3dd1f-71a2-4f08-8b5c-04d28c16d743",
+      "estimatedHours": 2,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/bash-monitor-starter",
+      "checklistItems": "[{\"id\":\"sh_1\",\"text\":\"Shell script with robust error handling (`set -euo pipefail`)\",\"points\":40,\"rulePattern\":\"sh\"},{\"id\":\"sh_2\",\"text\":\"Systemd service unit file definition\",\"points\":30,\"rulePattern\":\"service\"},{\"id\":\"sh_3\",\"text\":\"README documenting cron / systemd installation\",\"points\":30,\"rulePattern\":\"readme\"}]",
+      "expectedFiles": "[\"monitor.sh\",\"skilltwin-monitor.service\",\"tests/test_monitor.sh\",\"README.md\"]",
+      "createdAt": "2026-08-20T08:45:24.690Z",
+      "updatedAt": "2026-08-20T08:45:24.690Z"
+    },
+    {
+      "id": "0b62538c-c1fd-4e7d-814f-af08f629536d",
+      "targetSkill": "Python for Data Analysis",
+      "title": "Automate Exploratory Data Analysis & Anomaly Detection",
+      "description": "Write a reproducible Python data cleaning pipeline using Pandas, NumPy, and Scikit-Learn to detect revenue fraud anomalies.",
+      "difficulty": "INTERMEDIATE",
+      "relatedRoleId": "6660e279-5db9-4633-8d5b-53e77ed72612",
+      "estimatedHours": 3,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/python-eda-starter",
+      "checklistItems": "[{\"id\":\"py_1\",\"text\":\"Python data processing script with Pandas dataframes\",\"points\":40,\"rulePattern\":\"py\"},{\"id\":\"py_2\",\"text\":\"Jupyter notebook or Markdown visual summary\",\"points\":30,\"rulePattern\":\"notebook\"},{\"id\":\"py_3\",\"text\":\"requirements.txt and automated unit tests with pytest\",\"points\":30,\"rulePattern\":\"test\"}]",
+      "expectedFiles": "[\"src/pipeline.py\",\"notebooks/analysis.ipynb\",\"requirements.txt\",\"tests/test_pipeline.py\"]",
+      "createdAt": "2026-08-20T08:45:24.690Z",
+      "updatedAt": "2026-08-20T08:45:24.690Z"
+    },
+    {
+      "id": "7d324b01-d658-4f21-836f-0b88ff78242f",
+      "targetSkill": "Business Intelligence & Dashboards",
+      "title": "Design Interactive Cohort LTV & Retention Dashboard",
+      "description": "Build an executive analytics dashboard tracking monthly active users, customer acquisition cost, and churn cohorts.",
+      "difficulty": "INTERMEDIATE",
+      "relatedRoleId": "6660e279-5db9-4633-8d5b-53e77ed72612",
+      "estimatedHours": 3,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/bi-dashboard-starter",
+      "checklistItems": "[{\"id\":\"bi_1\",\"text\":\"Dashboard data ingestion script or SQL views\",\"points\":40,\"rulePattern\":\"sql\"},{\"id\":\"bi_2\",\"text\":\"Interactive chart visualizations and filtering controls\",\"points\":30,\"rulePattern\":\"dashboard\"},{\"id\":\"bi_3\",\"text\":\"Executive insights narrative and documentation\",\"points\":30,\"rulePattern\":\"readme\"}]",
+      "expectedFiles": "[\"views/cohort_retention.sql\",\"src/dashboard.js\",\"README.md\"]",
+      "createdAt": "2026-08-20T08:45:24.690Z",
+      "updatedAt": "2026-08-20T08:45:24.690Z"
+    },
+    {
+      "id": "ba607563-236e-4775-845c-023158c53523",
+      "targetSkill": "ETL Pipelines & Data Quality",
+      "title": "Build Automated dbt Transformation & Data Quality Suite",
+      "description": "Author dbt models with staging, intermediate, and marts layers, incorporating schema tests and freshness alerts.",
+      "difficulty": "ADVANCED",
+      "relatedRoleId": "6660e279-5db9-4633-8d5b-53e77ed72612",
+      "estimatedHours": 4,
+      "starterRepoUrl": "https://github.com/skilltwin-templates/dbt-analytics-starter",
+      "checklistItems": "[{\"id\":\"dbt_1\",\"text\":\"dbt_project.yml and staging SQL models\",\"points\":40,\"rulePattern\":\"sql\"},{\"id\":\"dbt_2\",\"text\":\"Schema YAML tests (unique, not_null, accepted_values)\",\"points\":30,\"rulePattern\":\"schema\"},{\"id\":\"dbt_3\",\"text\":\"README documenting data lineage and execution commands\",\"points\":30,\"rulePattern\":\"readme\"}]",
+      "expectedFiles": "[\"dbt_project.yml\",\"models/staging/stg_users.sql\",\"models/schema.yml\",\"README.md\"]",
+      "createdAt": "2026-08-20T08:45:24.691Z",
+      "updatedAt": "2026-08-20T08:45:24.691Z"
+    }
+  ],
+  "missionSubmissions": [
+    {
+      "id": "395c278e-e739-41de-8fbc-505e1f9a23a8",
+      "missionId": "5be86732-0fa2-4e2c-97e1-b09a843b02e2",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "submissionUrl": "https://github.com/alexchen/verified-docker-solution",
+      "status": "EVALUATED",
+      "rubricResults": "[{\"id\":\"dock_1\",\"text\":\"Dockerfile is present in root with multi-stage build pattern\",\"points\":30,\"pointsEarned\":30,\"passed\":true,\"details\":\"Found Dockerfile with container build definitions.\"},{\"id\":\"dock_2\",\"text\":\"docker-compose.yml orchestrates web application and database services\",\"points\":30,\"pointsEarned\":30,\"passed\":true,\"details\":\"Found docker-compose multi-service orchestration file.\"},{\"id\":\"dock_3\",\"text\":\"README.md documents container startup and teardown commands\",\"points\":20,\"pointsEarned\":20,\"passed\":true,\"details\":\"Found README.md with project setup and operational instructions.\"},{\"id\":\"dock_4\",\"text\":\"Healthcheck endpoint or automated test verified\",\"points\":20,\"pointsEarned\":0,\"passed\":false,\"details\":\"No test files or test directory discovered.\"}]",
+      "scoreDelta": 16,
+      "submittedAt": "2026-08-20T08:50:56.875Z",
+      "evaluatedAt": "2026-08-20T08:50:56.875Z",
+      "createdAt": "2026-08-20T08:50:56.876Z",
+      "updatedAt": "2026-08-20T08:50:56.876Z"
+    },
+    {
+      "id": "f994fc50-443e-432a-9187-76795294f5bc",
+      "missionId": "5be86732-0fa2-4e2c-97e1-b09a843b02e2",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "submissionUrl": "https://github.com/alexchen/verified-docker-solution",
+      "status": "EVALUATED",
+      "rubricResults": "[{\"id\":\"dock_1\",\"text\":\"Dockerfile is present in root with multi-stage build pattern\",\"points\":30,\"pointsEarned\":30,\"passed\":true,\"details\":\"Found Dockerfile with container build definitions.\"},{\"id\":\"dock_2\",\"text\":\"docker-compose.yml orchestrates web application and database services\",\"points\":30,\"pointsEarned\":30,\"passed\":true,\"details\":\"Found docker-compose multi-service orchestration file.\"},{\"id\":\"dock_3\",\"text\":\"README.md documents container startup and teardown commands\",\"points\":20,\"pointsEarned\":20,\"passed\":true,\"details\":\"Found README.md with project setup and operational instructions.\"},{\"id\":\"dock_4\",\"text\":\"Healthcheck endpoint or automated test verified\",\"points\":20,\"pointsEarned\":0,\"passed\":false,\"details\":\"No test files or test directory discovered.\"}]",
+      "scoreDelta": 16,
+      "submittedAt": "2026-08-20T08:51:10.364Z",
+      "evaluatedAt": "2026-08-20T08:51:10.364Z",
+      "createdAt": "2026-08-20T08:51:10.364Z",
+      "updatedAt": "2026-08-20T08:51:10.364Z"
+    },
+    {
+      "id": "bc1b3798-c332-4e93-abd3-0998943afd4f",
+      "missionId": "5be86732-0fa2-4e2c-97e1-b09a843b02e2",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "submissionUrl": "https://github.com/alexchen/verified-docker-solution",
+      "status": "EVALUATED",
+      "rubricResults": "[{\"id\":\"dock_1\",\"text\":\"Dockerfile is present in root with multi-stage build pattern\",\"points\":30,\"pointsEarned\":30,\"passed\":true,\"details\":\"Found Dockerfile with container build definitions.\"},{\"id\":\"dock_2\",\"text\":\"docker-compose.yml orchestrates web application and database services\",\"points\":30,\"pointsEarned\":30,\"passed\":true,\"details\":\"Found docker-compose multi-service orchestration file.\"},{\"id\":\"dock_3\",\"text\":\"README.md documents container startup and teardown commands\",\"points\":20,\"pointsEarned\":20,\"passed\":true,\"details\":\"Found README.md with project setup and operational instructions.\"},{\"id\":\"dock_4\",\"text\":\"Healthcheck endpoint or automated test verified\",\"points\":20,\"pointsEarned\":20,\"passed\":true,\"details\":\"Found test suite and automated assertion files.\"}]",
+      "scoreDelta": 20,
+      "submittedAt": "2026-08-20T08:51:27.086Z",
+      "evaluatedAt": "2026-08-20T08:51:27.086Z",
+      "createdAt": "2026-08-20T08:51:27.086Z",
+      "updatedAt": "2026-08-20T08:51:27.086Z"
+    }
+  ],
+  "readinessScoreHistories": [
+    {
+      "id": "f7d11c70-60df-4643-8f4f-08f24f759ca7",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 42,
+      "computedAt": "2026-08-06T08:45:24.693Z",
+      "createdAt": "2026-08-20T08:45:24.693Z",
+      "updatedAt": "2026-08-20T08:45:24.693Z"
+    },
+    {
+      "id": "0e8dceae-dd0c-402d-b466-4e5f91dbe8ce",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 50,
+      "computedAt": "2026-08-13T08:45:24.693Z",
+      "createdAt": "2026-08-20T08:45:24.693Z",
+      "updatedAt": "2026-08-20T08:45:24.693Z"
+    },
+    {
+      "id": "1b954b08-6ee6-49b2-956c-4aab9eb015f8",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 58,
+      "computedAt": "2026-08-20T08:45:24.693Z",
+      "createdAt": "2026-08-20T08:45:24.693Z",
+      "updatedAt": "2026-08-20T08:45:24.693Z"
+    },
+    {
+      "id": "5de1e32e-a857-48ad-aa00-998ee1d0102f",
+      "studentProfileId": "0c9b6af4-8ed8-4cf9-80d8-fd4ddeacfa5f",
+      "score": 68,
+      "computedAt": "2026-07-30T08:45:24.694Z",
+      "createdAt": "2026-08-20T08:45:24.695Z",
+      "updatedAt": "2026-08-20T08:45:24.695Z"
+    },
+    {
+      "id": "84ff1eb6-022c-47ad-a893-c86ae6f3dd87",
+      "studentProfileId": "0c9b6af4-8ed8-4cf9-80d8-fd4ddeacfa5f",
+      "score": 76,
+      "computedAt": "2026-08-10T08:45:24.694Z",
+      "createdAt": "2026-08-20T08:45:24.695Z",
+      "updatedAt": "2026-08-20T08:45:24.695Z"
+    },
+    {
+      "id": "935d58af-33e9-4861-88dc-912a6b029e36",
+      "studentProfileId": "0c9b6af4-8ed8-4cf9-80d8-fd4ddeacfa5f",
+      "score": 86,
+      "computedAt": "2026-08-20T08:45:24.694Z",
+      "createdAt": "2026-08-20T08:45:24.695Z",
+      "updatedAt": "2026-08-20T08:45:24.695Z"
+    },
+    {
+      "id": "40431c22-23ec-40bf-855e-4020bdaafd95",
+      "studentProfileId": "74a2cc9d-4d6a-4624-80a0-10a23b2f8bdf",
+      "score": 36,
+      "computedAt": "2026-08-20T08:45:24.741Z",
+      "createdAt": "2026-08-20T08:45:24.741Z",
+      "updatedAt": "2026-08-20T08:45:24.741Z"
+    },
+    {
+      "id": "19a46152-c904-4dfa-aae0-7c285ba034e0",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 79,
+      "createdAt": "2026-08-20T08:50:56.877Z",
+      "updatedAt": "2026-08-20T08:50:56.877Z"
+    },
+    {
+      "id": "709bfbd2-df5f-479c-8f64-9cf3760a3e5b",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 82,
+      "createdAt": "2026-08-20T08:51:10.365Z",
+      "updatedAt": "2026-08-20T08:51:10.365Z"
+    },
+    {
+      "id": "25d68647-62da-4250-ae61-da2077f7d9d3",
+      "studentProfileId": "1f0aabc0-8570-4f10-aa91-35031e0b6e4e",
+      "score": 86,
+      "createdAt": "2026-08-20T08:51:27.087Z",
+      "updatedAt": "2026-08-20T08:51:27.087Z"
+    }
+  ]
+}

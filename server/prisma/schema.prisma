@@ -1,0 +1,104 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "windows-arm64"]
+}
+
+model User {
+  id           String          @id @default(uuid())
+  name         String
+  email        String          @unique
+  passwordHash String
+  role         String          @default("STUDENT") // STUDENT | COLLEGE_ADMIN
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  profile      StudentProfile?
+}
+
+model TargetRole {
+  id                String           @id @default(uuid())
+  name              String           @unique
+  category          String           @default("Software Engineering")
+  description       String
+  icon              String           @default("code")
+  skillRequirements String           // JSON: [{ skillName, requiredPercentage, importanceWeight, relevanceWeight }]
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  profiles          StudentProfile[]
+  missions          Mission[]
+}
+
+model StudentProfile {
+  id                String                  @id @default(uuid())
+  userId            String                  @unique
+  user              User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  degree            String                  @default("B.S. in Computer Science")
+  academicSubjects  String                  @default("[]") // JSON array of subjects
+  languages         String                  @default("[]") // JSON array of languages
+  dsaProblemsSolved Int                     @default(0)
+  projects          String                  @default("[]") // JSON array of project objects { title, techStack, description, repoUrl, complexity }
+  certifications    String                  @default("[]") // JSON array of strings
+  githubUrl         String                  @default("")
+  targetRoleId      String?
+  targetRole        TargetRole?             @relation(fields: [targetRoleId], references: [id])
+  createdAt         DateTime                @default(now())
+  updatedAt         DateTime                @updatedAt
+  skillGraphs       SkillGraph[]
+  submissions       MissionSubmission[]
+  readinessHistory  ReadinessScoreHistory[]
+}
+
+model SkillGraph {
+  id               String         @id @default(uuid())
+  studentProfileId String
+  studentProfile   StudentProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
+  skillName        String
+  currentScore     Int            @default(0) // 0 - 100
+  lastEvidence     String?
+  lastUpdated      DateTime       @default(now())
+
+  @@unique([studentProfileId, skillName])
+}
+
+model Mission {
+  id             String              @id @default(uuid())
+  targetSkill    String
+  title          String
+  description    String
+  difficulty     String              @default("INTERMEDIATE") // BEGINNER | INTERMEDIATE | ADVANCED
+  checklistItems String              // JSON: [{ id, text, points, rulePattern }]
+  expectedFiles  String              @default("[]") // JSON: string[]
+  starterRepoUrl String              @default("")
+  estimatedHours Int                 @default(3)
+  relatedRoleId  String?
+  relatedRole    TargetRole?         @relation(fields: [relatedRoleId], references: [id])
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  submissions    MissionSubmission[]
+}
+
+model MissionSubmission {
+  id               String         @id @default(uuid())
+  missionId        String
+  mission          Mission        @relation(fields: [missionId], references: [id], onDelete: Cascade)
+  studentProfileId String
+  studentProfile   StudentProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
+  submissionUrl    String
+  status           String         @default("EVALUATED") // PENDING | EVALUATED
+  rubricResults    String         // JSON: [{ ruleId, text, passed, pointsEarned, message }]
+  scoreDelta       Int            @default(0)
+  submittedAt      DateTime       @default(now())
+  evaluatedAt      DateTime       @default(now())
+}
+
+model ReadinessScoreHistory {
+  id               String         @id @default(uuid())
+  studentProfileId String
+  studentProfile   StudentProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
+  score            Int            // 0 - 100
+  computedAt       DateTime       @default(now())
+}
