@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillTwin — 5-Minute Final Video Pitch</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #030712; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(51, 65, 85, 0.8); }
+    .glow { box-shadow: 0 0 50px -10px rgba(99, 102, 241, 0.35); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8">
+
+  <div class="max-w-4xl w-full glass rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6 glow">
+    
+    <!-- Top Header -->
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-500 to-indigo-600 flex items-center justify-center text-white font-bold shadow-lg">
+          🎬
+        </div>
+        <div>
+          <h1 class="text-lg sm:text-xl font-black text-white">SkillTwin — 5-Minute Final Video Pitch</h1>
+          <p class="text-xs text-slate-400 font-mono" id="sceneIndicator">Scene 1 of 5 • 0:00 – 1:00</p>
+        </div>
+      </div>
+
+      <button id="voiceToggle" onclick="toggleVoice()" class="px-3 py-1.5 rounded-xl bg-slate-800 text-xs font-semibold text-cyan-300 border border-slate-700">
+        🔊 Voiceover: ON
+      </button>
+    </div>
+
+    <!-- Main Slide Stage Area -->
+    <div class="bg-slate-950 p-6 sm:p-8 rounded-2xl border border-slate-800 space-y-4 min-h-[300px] flex flex-col justify-between" id="stage">
+      <div class="space-y-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 font-mono" id="actBadge">ACT 1: 0:00 – 1:00</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-white" id="slideTitle">The Problem: The $350 LeetCode Paradox</h2>
+        <p class="text-sm sm:text-base text-slate-300 font-medium" id="slideSubtitle">Why high DSA scores still result in technical interview rejections</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="pointsGrid">
+        <!-- Injected via JS -->
+      </div>
+
+      <!-- Closed Caption Transcript -->
+      <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 italic flex items-start gap-2">
+        <span class="text-amber-400">✨</span>
+        <span id="transcriptText">"Last semester, we met Alex—a brilliant student with 350 LeetCode problems who failed his first interview because he had never configured a Dockerfile..."</span>
+      </div>
+    </div>
+
+    <!-- Scrubber Progress Bar -->
+    <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+      <div id="progressBar" class="bg-gradient-to-r from-rose-500 via-indigo-500 to-cyan-400 h-full rounded-full transition-all duration-100" style="width: 0%;"></div>
+    </div>
+
+    <!-- Playback Controls -->
+    <div class="flex items-center justify-between pt-2">
+      <div class="flex items-center gap-2">
+        <button onclick="togglePlay()" id="playBtn" class="px-6 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-black shadow-lg flex items-center gap-2">
+          ▶ Play Video Pitch
+        </button>
+        <button onclick="prevSlide()" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
+          ◀ Prev
+        </button>
+        <button onclick="nextSlide()" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
+          Next ▶
+        </button>
+      </div>
+
+      <div class="text-xs text-slate-500 font-mono">
+        SkillTwin Video Reel • Web Speech Powered
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const scenes = [
+      {
+        act: 'ACT 1: 0:00 – 1:00',
+        time: '0:00 – 1:00',
+        title: 'The Problem: The $350 LeetCode Paradox',
+        subtitle: 'Why high DSA scores still result in technical interview rejections',
+        points: [
+          'Competitive Coding: Measures puzzle speed, not systems architecture',
+          'Course Platforms: Measures video watch-time, not demonstrated ability',
+          'Static Resumes: Unverified self-claims that recruiters distrust',
+          'College Placement Cells: Discover student weaknesses only after rejection'
+        ],
+        text: "Last semester, we met Alex—a brilliant student with 350 solved LeetCode problems who failed his first backend interview in 20 minutes because he had never configured a Dockerfile or handled database concurrency. Coding portals track puzzle speed, and course platforms track watch time. None of them verify whether a student is actually ready for the job."
+      },
+      {
+        act: 'ACT 2: 1:00 – 1:45',
+        time: '1:00 – 1:45',
+        title: 'The Solution: Introducing SkillTwin',
+        subtitle: 'A deterministic Digital Twin continuous career-readiness engine',
+        points: [
+          '1. Assess: Normalized multi-dimensional skill graph',
+          '2. Prioritize: Priority Score = Gap × Industry Weight × Role Relevance',
+          '3. Execute: Targeted hands-on missions closing top deficits',
+          '4. Verify: Deterministic rubric evaluator updating readiness'
+        ],
+        text: "SkillTwin creates a living, evidence-backed Digital Skill Twin of a student that continuously benchmarks their demonstrated capabilities against real industry requirements for their target career, using a transparent, explainable closed loop."
+      },
+      {
+        act: 'ACT 3: 1:45 – 3:15',
+        time: '1:45 – 3:15',
+        title: 'Live Core Loop Demonstration',
+        subtitle: 'From 58% readiness to verified Docker competency in real time',
+        points: [
+          'Alex Chen: 145 DSA solved (82% mastered), Docker deficit (35%)',
+          'Hands-on Mission: Containerize Express with Multi-Stage Dockerfile',
+          'In-Browser Code Inspector: Dockerfile, compose.yml, tests/',
+          'Automated Rubric Scan: +20 points awarded with celebratory confetti'
+        ],
+        text: "Looking at Alex Chen targeting Backend Engineer at 58% readiness: SkillTwin flags Docker as his #1 critical deficit. In the mission evaluator, Alex submits his code artifacts. The deterministic rubric evaluator verifies healthchecks and tests, awarding +20 points and updating his readiness to 66%."
+      },
+      {
+        act: 'ACT 4: 3:15 – 4:00',
+        time: '3:15 – 4:00',
+        title: 'The College Cockpit: Institutional Telemetry',
+        subtitle: 'Empowering universities with automated curriculum intervention',
+        points: [
+          'Institutional Heatmap: Aggregate cohort deficit frequency across skills',
+          'Curriculum Generator: Automated 2-week intensive faculty workshop syllabus',
+          'Faculty Nudge Loop: Direct mission assignment with custom coaching notes',
+          '1-Click Placement CSV: Complete cohort readiness spreadsheet export'
+        ],
+        text: "For universities, SkillTwin delivers cohort-level placement intelligence. Department chairs view institutional skill gap heatmaps showing that 67% of students lack containerization skills, synthesize 2-week faculty lab syllabi with 1 click, and assign priority missions directly to students."
+      },
+      {
+        act: 'ACT 5: 4:00 – 5:00',
+        time: '4:00 – 5:00',
+        title: 'Business Model, Defensibility & Vision',
+        subtitle: 'B2B2C SaaS flywheel converting learners into verified engineers',
+        points: [
+          'Universities (B2B): Annual per-seat licensing for accreditation & placement',
+          'Students (Freemium): Free digital twin + verified credential export',
+          'Recruiters (B2B): Direct search across verified evidence portfolios',
+          'Deterministic Advantage: Zero hallucination, auditable rubric scoring'
+        ],
+        text: "Our B2B2C business model monetizes through university annual seat licensing, student pro credentials, and corporate recruiter talent sourcing. We win by choosing deterministic heuristics over black-box AI wrappers—providing explainable, cryptographically verifiable career credentials."
+      }
+    ];
+
+    let currentIndex = 0;
+    let isPlaying = false;
+    let voiceOn = true;
+    let timer = null;
+    let elapsed = 0;
+    const DURATION = 14000;
+
+    function renderSlide() {
+      const s = scenes[currentIndex];
+      document.getElementById('sceneIndicator').innerText = `Scene ${currentIndex + 1} of ${scenes.length} • ${s.time}`;
+      document.getElementById('actBadge').innerText = s.act;
+      document.getElementById('slideTitle').innerText = s.title;
+      document.getElementById('slideSubtitle').innerText = s.subtitle;
+      document.getElementById('transcriptText').innerText = `"${s.text}"`;
+
+      const grid = document.getElementById('pointsGrid');
+      grid.innerHTML = s.points.map((pt, i) => `
+        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-2.5 text-xs text-slate-200">
+          <span class="w-5 h-5 rounded bg-indigo-600/30 text-indigo-400 font-bold flex items-center justify-center text-[10px] flex-shrink-0">${i + 1}</span>
+          <span>${pt}</span>
+        </div>
+      `).join('');
+
+      if (isPlaying && voiceOn && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(s.text);
+        u.rate = 1.05;
+        window.speechSynthesis.speak(u);
+      }
+    }
+
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      document.getElementById('playBtn').innerHTML = isPlaying ? '⏸ Pause Presentation' : '▶ Play Video Pitch';
+
+      if (isPlaying) {
+        elapsed = 0;
+        renderSlide();
+        timer = setInterval(() => {
+          elapsed += 100;
+          const pct = Math.min(100, (elapsed / DURATION) * 100);
+          document.getElementById('progressBar').style.width = pct + '%';
+
+          if (elapsed >= DURATION) {
+            elapsed = 0;
+            if (currentIndex + 1 < scenes.length) {
+              currentIndex++;
+              renderSlide();
+            } else {
+              isPlaying = false;
+              clearInterval(timer);
+              document.getElementById('playBtn').innerHTML = '▶ Replay Video Pitch';
+            }
+          }
+        }, 100);
+      } else {
+        clearInterval(timer);
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      }
+    }
+
+    function nextSlide() {
+      if (currentIndex + 1 < scenes.length) {
+        currentIndex++;
+        elapsed = 0;
+        renderSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        elapsed = 0;
+        renderSlide();
+      }
+    }
+
+    function toggleVoice() {
+      voiceOn = !voiceOn;
+      document.getElementById('voiceToggle').innerText = voiceOn ? '🔊 Voiceover: ON' : '🔇 Voiceover: MUTED';
+      if (!voiceOn && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+
+    renderSlide();
+  </script>
+</body>
+</html>
