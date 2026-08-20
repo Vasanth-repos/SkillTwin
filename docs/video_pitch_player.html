@@ -3,51 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SkillTwin — 5-Minute Final Video Pitch</title>
+  <title>SkillTwin — Full Comprehensive Video Pitch Presentation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background-color: #030712; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
-    .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(51, 65, 85, 0.8); }
-    .glow { box-shadow: 0 0 50px -10px rgba(99, 102, 241, 0.35); }
+    .glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(51, 65, 85, 0.8); }
+    .glow { box-shadow: 0 0 60px -10px rgba(99, 102, 241, 0.35); }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8">
+<body class="min-h-screen flex flex-col items-center justify-center p-3 sm:p-6">
 
-  <div class="max-w-4xl w-full glass rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6 glow">
+  <div class="max-w-5xl w-full glass rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5 glow my-auto">
     
     <!-- Top Header -->
     <div class="flex items-center justify-between border-b border-slate-800 pb-4">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-500 to-indigo-600 flex items-center justify-center text-white font-bold shadow-lg">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-600 via-pink-600 to-amber-500 flex items-center justify-center text-white font-bold shadow-lg">
           🎬
         </div>
         <div>
-          <h1 class="text-lg sm:text-xl font-black text-white">SkillTwin — 5-Minute Final Video Pitch</h1>
-          <p class="text-xs text-slate-400 font-mono" id="sceneIndicator">Scene 1 of 5 • 0:00 – 1:00</p>
+          <h1 class="text-base sm:text-lg font-black text-white">SkillTwin — Full Comprehensive Video Pitch Reel</h1>
+          <p class="text-xs text-slate-400 font-mono" id="sceneIndicator">Act 1: The Problem • Scene 1 of 7 • 0:00 – 1:00</p>
         </div>
       </div>
 
-      <button id="voiceToggle" onclick="toggleVoice()" class="px-3 py-1.5 rounded-xl bg-slate-800 text-xs font-semibold text-cyan-300 border border-slate-700">
-        🔊 Voiceover: ON
-      </button>
+      <div class="flex items-center gap-2">
+        <button id="voiceToggle" onclick="toggleVoice()" class="px-3 py-1.5 rounded-xl bg-slate-800 text-xs font-semibold text-cyan-300 border border-slate-700">
+          🔊 Voiceover: ON
+        </button>
+      </div>
     </div>
 
     <!-- Main Slide Stage Area -->
-    <div class="bg-slate-950 p-6 sm:p-8 rounded-2xl border border-slate-800 space-y-4 min-h-[300px] flex flex-col justify-between" id="stage">
-      <div class="space-y-2">
-        <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 font-mono" id="actBadge">ACT 1: 0:00 – 1:00</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white" id="slideTitle">The Problem: The $350 LeetCode Paradox</h2>
-        <p class="text-sm sm:text-base text-slate-300 font-medium" id="slideSubtitle">Why high DSA scores still result in technical interview rejections</p>
+    <div class="bg-slate-950 p-6 sm:p-8 rounded-2xl border border-slate-800 space-y-4 min-h-[360px] flex flex-col justify-between" id="stage">
+      <div class="space-y-1.5">
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] font-mono uppercase bg-rose-500/20 text-rose-300 px-2.5 py-0.5 rounded-full border border-rose-500/40 font-bold" id="badgeText">
+            The Signaling Crisis
+          </span>
+          <span class="text-xs font-mono text-cyan-400 font-semibold" id="actBadge">ACT 1: 0:00 – 1:00</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-white" id="slideTitle">The $350 LeetCode Problem Paradox</h2>
+        <p class="text-xs sm:text-sm text-slate-300 font-medium" id="slideSubtitle">Why high DSA scores still result in technical interview rejections</p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="pointsGrid">
-        <!-- Injected via JS -->
-      </div>
+      <!-- Formula if any -->
+      <div id="formulaBox" class="hidden p-2.5 rounded-xl bg-brand-950/60 border border-brand-500/40 text-center font-mono font-bold text-cyan-300 text-xs sm:text-sm"></div>
+
+      <!-- Key Takeaways Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="pointsGrid"></div>
 
       <!-- Closed Caption Transcript -->
-      <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 italic flex items-start gap-2">
+      <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 italic flex items-start gap-2">
         <span class="text-amber-400">✨</span>
-        <span id="transcriptText">"Last semester, we met Alex—a brilliant student with 350 LeetCode problems who failed his first interview because he had never configured a Dockerfile..."</span>
+        <div class="space-y-0.5">
+          <span class="text-[10px] font-bold uppercase text-amber-400 not-italic block">Speaker Narration:</span>
+          <span id="transcriptText">"Last semester, we met Alex—a brilliant student with 350 LeetCode problems who failed his first interview..."</span>
+        </div>
       </div>
     </div>
 
@@ -57,21 +69,22 @@
     </div>
 
     <!-- Playback Controls -->
-    <div class="flex items-center justify-between pt-2">
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
       <div class="flex items-center gap-2">
-        <button onclick="togglePlay()" id="playBtn" class="px-6 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-black shadow-lg flex items-center gap-2">
-          ▶ Play Video Pitch
+        <button onclick="togglePlay()" id="playBtn" class="px-6 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-black shadow-lg flex items-center gap-2 transition-all">
+          ▶ Play Full Pitch Reel
         </button>
-        <button onclick="prevSlide()" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
+        <button onclick="prevSlide()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
           ◀ Prev
         </button>
-        <button onclick="nextSlide()" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
+        <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">
           Next ▶
         </button>
       </div>
 
-      <div class="text-xs text-slate-500 font-mono">
-        SkillTwin Video Reel • Web Speech Powered
+      <div class="text-xs text-slate-500 font-mono flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>SkillTwin Full 7-Act Master Pitch Reel</span>
       </div>
     </div>
 
@@ -81,68 +94,103 @@
     const scenes = [
       {
         act: 'ACT 1: 0:00 – 1:00',
+        badge: 'The Signaling Crisis',
         time: '0:00 – 1:00',
-        title: 'The Problem: The $350 LeetCode Paradox',
-        subtitle: 'Why high DSA scores still result in technical interview rejections',
+        title: 'The $350 LeetCode Problem Paradox',
+        subtitle: 'The systemic disconnect between competitive coding and real-world engineering',
         points: [
-          'Competitive Coding: Measures puzzle speed, not systems architecture',
-          'Course Platforms: Measures video watch-time, not demonstrated ability',
-          'Static Resumes: Unverified self-claims that recruiters distrust',
-          'College Placement Cells: Discover student weaknesses only after rejection'
+          'Algorithmic Isolation: Tracks puzzle speed, not systems architecture',
+          'Passive Consumption: MOOCs measure video completion rather than code output',
+          'Resume Inflation: Self-reported claims lack audit trails and proof',
+          'Institutional Blindness: Placement cells discover deficits only post-rejection'
         ],
-        text: "Last semester, we met Alex—a brilliant student with 350 solved LeetCode problems who failed his first backend interview in 20 minutes because he had never configured a Dockerfile or handled database concurrency. Coding portals track puzzle speed, and course platforms track watch time. None of them verify whether a student is actually ready for the job."
+        text: "Good morning, judges. Last semester, we met a brilliant final-year student named Alex. Alex had solved 350 LeetCode problems, completed two video certifications, and listed a dozen buzzwords on his resume. Yet, in his very first technical interview for a Backend role, he was rejected in under twenty minutes. Why? Because when the interviewer asked him to write a multi-stage Dockerfile and debug a database race condition, Alex froze. Coding platforms track puzzle speed. Course platforms track video watch time. Resumes show unverified claims that recruiters distrust. And college placement cells discover student weaknesses only after they get rejected. Students don't need another 40-hour video course. They need to know: What is my number one deficit right now, and how do I prove I've fixed it?"
       },
       {
-        act: 'ACT 2: 1:00 – 1:45',
-        time: '1:00 – 1:45',
-        title: 'The Solution: Introducing SkillTwin',
-        subtitle: 'A deterministic Digital Twin continuous career-readiness engine',
+        act: 'ACT 2: 1:00 – 2:00',
+        badge: 'Digital Twin Architecture',
+        time: '1:00 – 2:00',
+        title: 'Introducing SkillTwin: The Living Digital Career Twin',
+        subtitle: 'A deterministic, evidence-backed career-readiness engine',
         points: [
-          '1. Assess: Normalized multi-dimensional skill graph',
-          '2. Prioritize: Priority Score = Gap × Industry Weight × Role Relevance',
-          '3. Execute: Targeted hands-on missions closing top deficits',
-          '4. Verify: Deterministic rubric evaluator updating readiness'
+          '1. Assess: Normalized multi-dimensional skill graph from real evidence',
+          '2. Prioritize: Mathematical tri-factor ranking of highest-impact gaps',
+          '3. Execute: Practical hands-on challenges (Docker, SQL, APIs, CI/CD)',
+          '4. Verify & Rescore: Deterministic rubric evaluator with score deltas'
         ],
-        text: "SkillTwin creates a living, evidence-backed Digital Skill Twin of a student that continuously benchmarks their demonstrated capabilities against real industry requirements for their target career, using a transparent, explainable closed loop."
+        text: "That is why we built SkillTwin. SkillTwin creates a living, evidence-backed Digital Skill Twin of a student that continuously benchmarks their real demonstrated capabilities against curated industry requirements for their target career. Rather than relying on black-box generative AI that hallucinates career advice, SkillTwin operates on an explainable, deterministic feedback loop. First, it assesses demonstrated evidence across academic coursework, projects, languages, and coding milestones into a scored skill graph. Second, it mathematically prioritizes skill deficits. Third, it generates practical hands-on engineering missions. And fourth, it verifies code artifacts with an automated rubric evaluator, dynamically re-scoring the student's Career Readiness Index in real time."
       },
       {
-        act: 'ACT 3: 1:45 – 3:15',
-        time: '1:45 – 3:15',
-        title: 'Live Core Loop Demonstration',
-        subtitle: 'From 58% readiness to verified Docker competency in real time',
+        act: 'ACT 3: 2:00 – 3:00',
+        badge: 'Deterministic Algorithms',
+        time: '2:00 – 3:00',
+        formula: 'Priority Score(s) = Gap(s) × W_industry(s) × W_relevance(s, r)',
+        title: 'Mathematical Gap Prioritization & The Readiness Index',
+        subtitle: 'Zero hallucinations: 100% explainable, deterministic algorithms',
         points: [
-          'Alex Chen: 145 DSA solved (82% mastered), Docker deficit (35%)',
-          'Hands-on Mission: Containerize Express with Multi-Stage Dockerfile',
-          'In-Browser Code Inspector: Dockerfile, compose.yml, tests/',
-          'Automated Rubric Scan: +20 points awarded with celebratory confetti'
+          'Explainable Urgency: Deficits ranked by mathematical urgency, not arbitrary lists',
+          'Anti-Masking Bound: Prevents over-specialization in DSA from hiding missing systems skills',
+          'Deterministic Grading: Identical code submissions always produce identical score deltas',
+          'Transparent Audit Trail: Every point gained is tied to a verifiable code artifact'
         ],
-        text: "Looking at Alex Chen targeting Backend Engineer at 58% readiness: SkillTwin flags Docker as his #1 critical deficit. In the mission evaluator, Alex submits his code artifacts. The deterministic rubric evaluator verifies healthchecks and tests, awarding +20 points and updating his readiness to 66%."
+        text: "Let us examine the mathematical foundation of SkillTwin. For any target role, each required skill is parameterized by required target percentage, intrinsic industry weight, and role relevance. The priority urgency score is calculated as Gap multiplied by Industry Weight multiplied by Career Relevance. The skill with the highest priority score is designated as the candidate's number one critical deficit. Furthermore, our Career Readiness Index computes the weighted normalized percentage across all competencies, capping mastered skills at 100% so that solving a thousand DSA problems cannot artificially mask a critical zero score in systems engineering."
       },
       {
-        act: 'ACT 4: 3:15 – 4:00',
-        time: '3:15 – 4:00',
-        title: 'The College Cockpit: Institutional Telemetry',
-        subtitle: 'Empowering universities with automated curriculum intervention',
+        act: 'ACT 4: 3:00 – 4:15',
+        badge: 'Live Evaluation Loop',
+        time: '3:00 – 4:15',
+        title: 'Live Product Demo: From 58% to 66% Readiness',
+        subtitle: 'Real-time in-browser code evaluation, rubric verification & predictive forecasting',
         points: [
-          'Institutional Heatmap: Aggregate cohort deficit frequency across skills',
-          'Curriculum Generator: Automated 2-week intensive faculty workshop syllabus',
-          'Faculty Nudge Loop: Direct mission assignment with custom coaching notes',
-          '1-Click Placement CSV: Complete cohort readiness spreadsheet export'
+          'Alex Chen: 145 DSA solved (82% mastered), Docker deficit at 35%',
+          'Targeted Mission: Containerize an Express Service with Multi-Stage Dockerfile',
+          'In-Browser Artifact Editor: Live syntax editing of Dockerfile & compose manifests',
+          'Rubric Engine: Awards +20 points, updating Career Readiness from 58% to 66%',
+          'Predictive Trajectory: 30-day forecast slider modeling growth curve to 82%'
         ],
-        text: "For universities, SkillTwin delivers cohort-level placement intelligence. Department chairs view institutional skill gap heatmaps showing that 67% of students lack containerization skills, synthesize 2-week faculty lab syllabi with 1 click, and assign priority missions directly to students."
+        text: "Let's look at Alex Chen's live Digital Twin. Alex is targeting Backend Software Engineer. SkillTwin scores his baseline readiness at 58%. Notice that the system did not tell him to do more DSA—his DSA score is already at 82%. Instead, our engine flagged Docker and Containerization as his number one critical deficit with a Priority Score of 72.8. Inside the mission evaluator, Alex uses our direct in-browser code editor to inspect his Dockerfile and docker-compose configurations. When he clicks 'Run Rubric Evaluator', our deterministic scanner verifies non-root user declarations, container healthchecks, and passing unit tests. It awards plus 20 points, triggers celebration confetti, and updates his Career Readiness Index from 58% to 66%. Alex can also use our 30-day Predictive Simulator to forecast that completing two more missions will push him to 82% Interview-Ready by next month."
       },
       {
-        act: 'ACT 5: 4:00 – 5:00',
-        time: '4:00 – 5:00',
-        title: 'Business Model, Defensibility & Vision',
-        subtitle: 'B2B2C SaaS flywheel converting learners into verified engineers',
+        act: 'ACT 5: 4:15 – 5:30',
+        badge: 'Institutional B2B Intel',
+        time: '4:15 – 5:30',
+        title: 'The College Placement Cockpit & Institutional Telemetry',
+        subtitle: 'Automated cohort heatmaps, 2-week workshop synthesis, and faculty nudge loops',
         points: [
-          'Universities (B2B): Annual per-seat licensing for accreditation & placement',
-          'Students (Freemium): Free digital twin + verified credential export',
-          'Recruiters (B2B): Direct search across verified evidence portfolios',
-          'Deterministic Advantage: Zero hallucination, auditable rubric scoring'
+          'Institutional Heatmap: Real-time cohort deficit frequency across technical domains',
+          'Curriculum Intervention Generator: 1-click synthesis of a 2-week faculty lab syllabus',
+          'Faculty Nudge Loop: Direct mission dispatch with custom instructor guidance notes',
+          '1-Click Accreditation Export: Complete cohort placement readiness telemetry CSV'
         ],
-        text: "Our B2B2C business model monetizes through university annual seat licensing, student pro credentials, and corporate recruiter talent sourcing. We win by choosing deterministic heuristics over black-box AI wrappers—providing explainable, cryptographically verifiable career credentials."
+        text: "Now let's examine the institutional B2B interface designed for universities and department chairs. Logging in as Professor Marcus Davis, the placement director gains real-time cohort telemetry. The Institutional Skill Gap Heatmap immediately reveals that 67% of students lack containerization and concurrency skills before campus placement drives begin. With a single click, SkillTwin synthesizes a tailored 2-Week Faculty Lab Syllabus addressing the cohort's number one deficit. Furthermore, Professor Davis can dispatch a priority mission directly to Alex with a personalized coaching note: 'Complete before Friday's placement drive', which appears as a prominent alert banner on Alex's dashboard. Administrators can also export a complete cohort readiness spreadsheet for accreditation bodies."
+      },
+      {
+        act: 'ACT 6: 5:30 – 6:30',
+        badge: 'Enterprise Monetization',
+        time: '5:30 – 6:30',
+        title: 'B2B2C Business Model & Technical Defensibility',
+        subtitle: 'A high-retention SaaS flywheel powered by deterministic verifiable credentials',
+        points: [
+          'Colleges (B2B): Annual per-seat licensing for cohort telemetry & placement success',
+          'Students (Freemium): Free core digital twin + verified cryptographic credentials',
+          'Recruiters (B2B): Talent search based on verified proof rather than keyword resumes',
+          'Defensibility Moat: Deterministic heuristics, zero hallucination, repeatable rubrics'
+        ],
+        text: "Our business model is a high-retention B2B2C SaaS flywheel. For universities and colleges, we offer annual per-seat enterprise licensing for cohort analytics, curriculum intervention tools, and accreditation reporting. For students, we provide a freemium model with premium mock interview defenses and cryptographically verifiable digital certificates. For corporate recruiters, SkillTwin serves as a direct talent pipeline to pre-verified candidates filtered by demonstrated competency rather than unverified resumes. Why do we win? We deliberately chose deterministic heuristics over unconstrained generative AI. Our rubrics never hallucinate, our scoring is 100% auditable, and our credentials carry verifiable SHA-256 evidence hashes."
+      },
+      {
+        act: 'ACT 7: 6:30 – 7:30',
+        badge: 'The Future of Career Readiness',
+        time: '6:30 – 7:30',
+        title: 'Transforming Learners into Verified Engineers',
+        subtitle: 'Know what you know. Fix what you don’t.',
+        points: [
+          'From Content to Competency: Moving beyond passive video consumption',
+          'Verifiable Evidence: Candidate abilities backed by inspectable code artifacts',
+          'Institutional Impact: Closing the signaling disconnect between campus and industry',
+          'Production-Ready: Fully deployed on Vercel and GitHub with 100% passing test suites'
+        ],
+        text: "In conclusion: Education has spent the last decade digitizing content through video lectures. SkillTwin is digitizing competency and career readiness. We turn students from passive course consumers into evidence-backed software engineers who walk into technical interviews with verifiable proof of their abilities. The full platform is live, containerized, and tested with automated CI/CD pipelines on GitHub. Thank you, and we welcome your questions."
       }
     ];
 
@@ -151,45 +199,59 @@
     let voiceOn = true;
     let timer = null;
     let elapsed = 0;
-    const DURATION = 14000;
+
+    function getDuration(text) {
+      const words = text.split(' ').length;
+      return Math.max(18000, Math.round((words / 2.3) * 1000));
+    }
 
     function renderSlide() {
       const s = scenes[currentIndex];
-      document.getElementById('sceneIndicator').innerText = `Scene ${currentIndex + 1} of ${scenes.length} • ${s.time}`;
+      document.getElementById('sceneIndicator').innerText = `Act ${currentIndex + 1} • Scene ${currentIndex + 1} of ${scenes.length} • ${s.time}`;
+      document.getElementById('badgeText').innerText = s.badge;
       document.getElementById('actBadge').innerText = s.act;
       document.getElementById('slideTitle').innerText = s.title;
       document.getElementById('slideSubtitle').innerText = s.subtitle;
       document.getElementById('transcriptText').innerText = `"${s.text}"`;
 
+      const formulaBox = document.getElementById('formulaBox');
+      if (s.formula) {
+        formulaBox.classList.remove('hidden');
+        formulaBox.innerText = s.formula;
+      } else {
+        formulaBox.classList.add('hidden');
+      }
+
       const grid = document.getElementById('pointsGrid');
       grid.innerHTML = s.points.map((pt, i) => `
-        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-2.5 text-xs text-slate-200">
-          <span class="w-5 h-5 rounded bg-indigo-600/30 text-indigo-400 font-bold flex items-center justify-center text-[10px] flex-shrink-0">${i + 1}</span>
-          <span>${pt}</span>
+        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-2 text-xs text-slate-200">
+          <span class="w-5 h-5 rounded bg-indigo-600/30 text-indigo-400 font-bold flex items-center justify-center text-[10px] flex-shrink-0 mt-0.5">${i + 1}</span>
+          <span class="leading-snug">${pt}</span>
         </div>
       `).join('');
 
       if (isPlaying && voiceOn && 'speechSynthesis' in window) {
         window.speechSynthesis.cancel();
         const u = new SpeechSynthesisUtterance(s.text);
-        u.rate = 1.05;
+        u.rate = 1.0;
         window.speechSynthesis.speak(u);
       }
     }
 
     function togglePlay() {
       isPlaying = !isPlaying;
-      document.getElementById('playBtn').innerHTML = isPlaying ? '⏸ Pause Presentation' : '▶ Play Video Pitch';
+      document.getElementById('playBtn').innerHTML = isPlaying ? '⏸ Pause Presentation' : '▶ Play Full Pitch Reel';
 
       if (isPlaying) {
         elapsed = 0;
         renderSlide();
+        const curDuration = getDuration(scenes[currentIndex].text);
         timer = setInterval(() => {
           elapsed += 100;
-          const pct = Math.min(100, (elapsed / DURATION) * 100);
+          const pct = Math.min(100, (elapsed / curDuration) * 100);
           document.getElementById('progressBar').style.width = pct + '%';
 
-          if (elapsed >= DURATION) {
+          if (elapsed >= curDuration) {
             elapsed = 0;
             if (currentIndex + 1 < scenes.length) {
               currentIndex++;
@@ -197,7 +259,7 @@
             } else {
               isPlaying = false;
               clearInterval(timer);
-              document.getElementById('playBtn').innerHTML = '▶ Replay Video Pitch';
+              document.getElementById('playBtn').innerHTML = '▶ Replay Full Pitch';
             }
           }
         }, 100);
