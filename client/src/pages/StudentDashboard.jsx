@@ -17,22 +17,15 @@ import {
   Target, 
   Compass, 
   Flame, 
-  BarChart2, 
-  History, 
   Sparkles, 
-  Award, 
-  CheckCircle2, 
-  ArrowRight,
-  TrendingUp,
-  FolderGit2,
-  ShieldCheck,
-  Layers,
-  Share2,
-  GraduationCap,
-  Zap,
-  BrainCircuit,
-  Calendar,
-  AlertCircle
+  ArrowRight, 
+  TrendingUp, 
+  FolderGit2, 
+  ShieldCheck, 
+  Layers, 
+  GraduationCap, 
+  Zap, 
+  BrainCircuit 
 } from 'lucide-react';
 
 export default function StudentDashboard({ onNavigateToMissions, onNavigateToProfile }) {
@@ -43,18 +36,16 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
   const [showSimulatorModal, setShowSimulatorModal] = useState(false);
   const [showCredentialModal, setShowCredentialModal] = useState(false);
   const [activeCompanyTier, setActiveCompanyTier] = useState('STANDARD');
-  const [chartViewMode, setChartViewMode] = useState('radar'); // 'radar' | 'bars'
+  const [chartViewMode, setChartViewMode] = useState('radar');
 
   const targetRole = profile?.targetRole;
   const roleRequirements = targetRole?.skillRequirements || [];
 
-  // Top gap
   const topGap = gaps.find(g => g.gap > 0);
   const topMission = topGap 
     ? missions.find(m => m.targetSkill === topGap.skillName && !m.isCompleted) || missions[0]
     : missions[0];
 
-  // Faculty assigned priority missions
   const facultyAssignments = profile?.facultyAssignments || [];
   const latestFacultyAssignment = facultyAssignments[0];
 
@@ -68,40 +59,40 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-300">
+    <div className="space-y-6 animate-in fade-in duration-300">
       
-      {/* Top Action Bar: Quick Simulator & Credential Export */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-900/60 p-3.5 rounded-2xl border border-slate-800/80">
+      {/* Top Quick Action Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-900/60 p-3 rounded-2xl border border-slate-800/80">
         <div className="flex items-center gap-2 text-xs text-slate-300">
-          <Sparkles className="w-4 h-4 text-brand-400" />
-          <span>Active Benchmark: <strong className="text-white">{targetRole?.name}</strong></span>
+          <Sparkles className="w-4 h-4 text-cyan-400" />
+          <span>Active Role: <strong className="text-white">{targetRole?.name}</strong></span>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
           {topGap && (
             <button
               onClick={() => setSelectedDrillSkill(topGap.skillName)}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-xs font-bold text-amber-300 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-xs font-bold text-amber-300 transition-colors"
             >
               <Zap className="w-3.5 h-3.5 text-amber-400" />
-              <span>Skill Defense Drill (+10 pts)</span>
+              <span>Skill Defense (+10 pts)</span>
             </button>
           )}
 
           <button
             onClick={() => setShowProjectDefense(true)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-xs font-bold text-cyan-300 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-xs font-bold text-cyan-300 transition-colors"
           >
             <BrainCircuit className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Mock Interview Defense</span>
+            <span>Mock Defense</span>
           </button>
 
           <button
             onClick={() => setShowSimulatorModal(true)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 hover:text-white transition-colors"
           >
-            <Layers className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Role "What-If" Simulator</span>
+            <Layers className="w-3.5 h-3.5 text-indigo-400" />
+            <span>Role Simulator</span>
           </button>
 
           <button
@@ -109,24 +100,24 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
             className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-xs font-bold text-white shadow-md shadow-brand-600/30 transition-all hover:scale-105"
           >
             <ShieldCheck className="w-3.5 h-3.5 text-white" />
-            <span>Export Verified Credential</span>
+            <span>Export Credential</span>
           </button>
         </div>
       </div>
 
-      {/* Faculty Assignment Alert Banner (if assigned by admin) */}
+      {/* Faculty Assignment Alert Banner */}
       {latestFacultyAssignment && latestFacultyAssignment.mission && (
-        <div className="p-5 rounded-3xl bg-gradient-to-r from-indigo-950/80 via-slate-900 to-brand-950/80 border-2 border-indigo-500/50 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4 animate-in slide-in-from-top duration-300">
+        <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-indigo-950/80 via-slate-900 to-brand-950/80 border-2 border-indigo-500/50 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4 animate-in slide-in-from-top duration-300">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 flex items-center gap-1">
-                <GraduationCap className="w-3.5 h-3.5 text-cyan-300" /> Faculty Nudge: Priority Mission Assigned
+              <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 flex items-center gap-1">
+                <GraduationCap className="w-3.5 h-3.5 text-cyan-300" /> Faculty Nudge: Priority Mission
               </span>
               <span className="text-xs text-slate-400 font-mono">
                 From {latestFacultyAssignment.facultyName}
               </span>
             </div>
-            <h3 className="text-base font-bold text-white">
+            <h3 className="text-sm sm:text-base font-bold text-white">
               {latestFacultyAssignment.mission.title}
             </h3>
             <p className="text-xs text-indigo-200/90 italic">
@@ -136,26 +127,26 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
 
           <button
             onClick={() => setSelectedMissionForModal(latestFacultyAssignment.mission)}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 flex-shrink-0"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/30 transition-all hover:scale-105 flex-shrink-0"
           >
-            <span>Start Faculty Mission</span>
+            <span>Start Mission</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
       )}
 
-      {/* Target Company Tier Selector */}
-      <div className="glass-panel p-5 rounded-3xl">
+      {/* Company Tier Selector */}
+      <div className="glass-panel p-4 sm:p-5">
         <CompanyTierSelector
           activeTier={activeCompanyTier}
           onSelectTier={setActiveCompanyTier}
         />
       </div>
 
-      {/* Hero Digital Twin Overview Row */}
+      {/* Readiness Meter & Radar Chart */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        {/* Left: Prominent Readiness Meter & Score Insights (5 cols) */}
+        {/* Left: Gauge (5 cols) */}
         <div className="lg:col-span-5 flex flex-col">
           <ReadinessGauge 
             readiness={readiness} 
@@ -164,24 +155,24 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
           />
         </div>
 
-        {/* Right: Skill Benchmark Visualization (7 cols) */}
-        <div className="lg:col-span-7 glass-panel rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+        {/* Right: Charts (7 cols) */}
+        <div className="lg:col-span-7 glass-panel p-6 flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between gap-4 mb-4">
+            <div className="flex items-center justify-between gap-4 mb-3">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                   Competency Benchmarking
                 </span>
-                <h3 className="text-lg font-bold text-white mt-0.5">
-                  Skill Graph vs Role Requirements
+                <h3 className="text-base font-bold text-white mt-0.5">
+                  Skill Graph vs Target Requirements
                 </h3>
               </div>
 
-              {/* View Toggle (Radar / Bar) */}
-              <div className="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs">
+              {/* View Toggle */}
+              <div className="flex items-center bg-slate-950 p-0.5 rounded-xl border border-slate-800 text-xs">
                 <button
                   onClick={() => setChartViewMode('radar')}
-                  className={`px-3 py-1 rounded-lg font-semibold transition-colors ${
+                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors ${
                     chartViewMode === 'radar' ? 'bg-brand-600 text-white' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
@@ -189,16 +180,15 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
                 </button>
                 <button
                   onClick={() => setChartViewMode('bars')}
-                  className={`px-3 py-1 rounded-lg font-semibold transition-colors ${
+                  className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors ${
                     chartViewMode === 'bars' ? 'bg-brand-600 text-white' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
-                  Breakdown
+                  Bar
                 </button>
               </div>
             </div>
 
-            {/* Chart Area */}
             {chartViewMode === 'radar' ? (
               <SkillRadarChart 
                 skillGraphs={skillGraphs} 
@@ -212,20 +202,20 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
             )}
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+          <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-cyan-400" /> Cyan: Demonstrated Score
+              <span className="w-2 h-2 rounded-full bg-cyan-400" /> Demonstrated Score
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-indigo-500" /> Indigo: Target Requirement
+              <span className="w-2 h-2 rounded-full bg-indigo-500" /> Target Requirement
             </span>
           </div>
         </div>
 
       </div>
 
-      {/* Milestone Badges Row */}
-      <div className="glass-panel p-6 rounded-3xl">
+      {/* Milestone Badges */}
+      <div className="glass-panel p-5">
         <MilestoneBadges 
           profile={profile} 
           skillGraphs={skillGraphs} 
@@ -233,26 +223,26 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
         />
       </div>
 
-      {/* Predictive Trajectory & Growth Simulator */}
+      {/* Predictive Trajectory Simulator */}
       <PredictiveTrajectorySimulator
         currentReadiness={readiness?.readinessScore || 58}
         gaps={gaps}
         dsaCurrent={profile?.dsaProblemsSolved || 65}
       />
 
-      {/* Recommended Mission Callout Banner */}
+      {/* Recommended Mission Callout */}
       {topMission && !topMission.isCompleted && topGap && (
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-brand-950/60 via-slate-900 to-indigo-950/50 border border-brand-500/40 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
-          <div className="space-y-1.5 max-w-2xl">
+        <div className="p-5 rounded-2xl bg-gradient-to-r from-brand-950/60 via-slate-900 to-indigo-950/50 border border-brand-500/40 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="space-y-1 max-w-2xl">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 flex items-center gap-1">
-                <Flame className="w-3 h-3 text-amber-400 fill-amber-400" /> Highest-Priority Gap Action
+              <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+                <Flame className="w-3 h-3 text-amber-400 fill-amber-400" /> Priority Gap Action
               </span>
               <span className="text-xs text-cyan-300 font-semibold font-mono">
-                Targets: {topMission.targetSkill} (-{topGap.gap} pts)
+                {topMission.targetSkill} (-{topGap.gap} pts)
               </span>
             </div>
-            <h3 className="text-lg font-bold text-white">
+            <h3 className="text-base font-bold text-white">
               {topMission.title}
             </h3>
             <p className="text-xs text-slate-300 line-clamp-2">
@@ -263,45 +253,40 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
           <div className="flex flex-wrap items-center gap-2 flex-shrink-0">
             <button
               onClick={() => setSelectedDrillSkill(topMission.targetSkill)}
-              className="flex items-center gap-1.5 px-4 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-all"
+              className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-all"
             >
-              <Zap className="w-4 h-4 text-amber-400" />
-              <span>Skill Defense Drill</span>
+              Skill Drill
             </button>
             <button
               onClick={() => setSelectedMissionForModal(topMission)}
-              className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold shadow-lg shadow-brand-600/30 transition-all hover:scale-105"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold shadow-md shadow-brand-600/30 transition-all hover:scale-105"
             >
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-3.5 h-3.5" />
               <span>Launch Mission</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
       )}
 
-      {/* Middle 2-Column Section: Prioritized Gaps & Trajectory History */}
+      {/* Prioritized Gaps & Trajectory History */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        {/* Ranked Priority Gaps List (7 cols) */}
-        <div className="lg:col-span-7 glass-panel rounded-3xl p-6 sm:p-7 space-y-4">
+        {/* Ranked Gaps (7 cols) */}
+        <div className="lg:col-span-7 glass-panel p-6 space-y-3">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                Rule-Based Gap Prioritization
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                Rule-Based Prioritization
               </span>
-              <h3 className="text-lg font-bold text-white mt-0.5">
+              <h3 className="text-base font-bold text-white mt-0.5">
                 Ranked Skill Deficits
               </h3>
             </div>
-            <span className="text-[11px] font-mono text-slate-500 hidden sm:inline">
+            <span className="text-[10px] font-mono text-slate-500">
               priority = gap × imp × rel
             </span>
           </div>
-
-          <p className="text-xs text-slate-400 leading-relaxed">
-            Prioritized by mathematical urgency based on hand-authored industry importance weights and target career relevance.
-          </p>
 
           <PriorityGapList 
             gaps={gaps} 
@@ -309,67 +294,54 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
           />
         </div>
 
-        {/* Right Column: Readiness Score History & Quick Evidence (5 cols) */}
+        {/* Score History & Recent Submissions (5 cols) */}
         <div className="lg:col-span-5 space-y-6 flex flex-col justify-between">
           
-          {/* Readiness Trajectory Card */}
-          <div className="glass-panel rounded-3xl p-6 space-y-3">
+          <div className="glass-panel p-5 space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                 Score Trajectory
               </span>
               <span className="text-xs font-bold text-cyan-400 flex items-center gap-1">
-                <TrendingUp className="w-3.5 h-3.5" /> Historical Growth
+                <TrendingUp className="w-3 h-3" /> Historical Growth
               </span>
             </div>
-            <h3 className="text-base font-bold text-white">
-              Readiness Over Time
-            </h3>
             <ReadinessTrendChart history={readinessHistory} />
           </div>
 
-          {/* Submission History Summary Card */}
-          <div className="glass-panel rounded-3xl p-6 space-y-4 flex-1">
+          <div className="glass-panel p-5 space-y-3 flex-1">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                 Evidence Audit Trail
               </span>
-              <span className="text-xs text-slate-400 font-semibold">
-                {submissions.length} Evaluated
+              <span className="text-[11px] text-slate-400 font-mono">
+                {submissions.length} Verified
               </span>
             </div>
-            <h3 className="text-base font-bold text-white">
-              Recent Verified Submissions
-            </h3>
 
             {submissions.length === 0 ? (
-              <div className="p-6 rounded-2xl bg-slate-950/40 border border-slate-800 text-center text-xs text-slate-400">
-                <FolderGit2 className="w-8 h-8 mx-auto text-slate-600 mb-2" />
-                No mission submissions yet. Launch your first mission above!
+              <div className="p-4 rounded-xl bg-slate-950/40 border border-slate-800 text-center text-xs text-slate-400">
+                <FolderGit2 className="w-6 h-6 mx-auto text-slate-600 mb-1" />
+                No submissions yet. Launch a mission above!
               </div>
             ) : (
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 {submissions.slice(0, 3).map((sub) => (
                   <div 
                     key={sub.id} 
-                    className="p-3 rounded-2xl bg-slate-950/60 border border-slate-800/80 flex items-center justify-between text-xs"
+                    className="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80 flex items-center justify-between text-xs"
                   >
                     <div className="space-y-0.5 max-w-[70%]">
-                      <p className="font-bold text-white truncate">
+                      <p className="font-bold text-white truncate text-[11px]">
                         {sub.mission?.title || 'Hands-on Mission'}
                       </p>
-                      <span className="text-[11px] font-mono text-slate-500 truncate block">
+                      <span className="text-[10px] font-mono text-slate-500 truncate block">
                         {sub.submissionUrl}
                       </span>
                     </div>
-                    <div className="text-right">
-                      <span className="text-xs font-bold text-emerald-400 block">
-                        +{sub.scoreDelta} PTS
-                      </span>
-                      <span className="text-[10px] text-slate-500">
-                        {new Date(sub.submittedAt).toLocaleDateString()}
-                      </span>
-                    </div>
+                    <span className="text-xs font-bold text-emerald-400 font-mono">
+                      +{sub.scoreDelta} PTS
+                    </span>
                   </div>
                 ))}
               </div>
@@ -380,7 +352,7 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
 
       </div>
 
-      {/* Role Simulator Modal */}
+      {/* Modals */}
       {showSimulatorModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
           <div className="relative w-full max-w-4xl bg-slate-900 border border-slate-700 rounded-3xl shadow-2xl overflow-hidden my-8 p-6 space-y-4">
@@ -393,7 +365,6 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
         </div>
       )}
 
-      {/* Verified Credential Export Modal */}
       {showCredentialModal && (
         <CredentialExportModal
           profile={profile}
@@ -403,7 +374,6 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
         />
       )}
 
-      {/* Skill Defense Scenario Drill Modal */}
       {selectedDrillSkill && (
         <SkillDefenseDrillModal
           skillName={selectedDrillSkill}
@@ -411,14 +381,12 @@ export default function StudentDashboard({ onNavigateToMissions, onNavigateToPro
         />
       )}
 
-      {/* Project Architecture Defense Modal */}
       {showProjectDefense && (
         <ProjectDefenseModal
           onClose={() => setShowProjectDefense(false)}
         />
       )}
 
-      {/* Mission Submission Modal */}
       {selectedMissionForModal && (
         <MissionSubmissionModal 
           mission={selectedMissionForModal} 
